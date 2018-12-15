@@ -1,0 +1,14 @@
+{
+  "name": "nwe/xmltreatment",
+  "authors": [
+    {
+      "name" : "nwe",
+      "email": "nwe@example.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WalkModifyXmlTree\\" : "src/"
+    }
+  }
+}

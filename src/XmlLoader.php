@@ -1,9 +1,14 @@
 <?php
 
-function getExampleXML()
+namespace WalkModifyXmlTree;
+
+class XmlLoader
 {
-    $str = <<<EOF
-<?xml version="1.0" encoding="utf-8"?>
+
+    public static function getExampleXML()
+    {
+        $str = <<<EOF
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <OPENQCAT version="1.1">
   <HEADER>
     <GENERATOR_INFO>str1234</GENERATOR_INFO>
@@ -500,5 +505,8 @@ function getExampleXML()
 </OPENQCAT>
 EOF;
 
-    return $str;
+        return $str;
+    }
+
+
 }
