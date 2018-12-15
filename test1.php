@@ -1,6 +1,15 @@
 <?php
 header("Content-Type:text/html;charset=ISO-8859-1");
 
+function setNodeAttribute($node, &$parent, $config)
+{
+    $nodename = $config['nodename'];
+    $attr = $config['attribute'];
+    if ($node->getName() === $nodename) {
+        $parent->$nodename->attributes()->$attr = $config['value'];
+    }
+}
+
 function setNodeValue($node, &$parent, $config)
 {
     $nodename = $config['nodename'];
@@ -13,7 +22,12 @@ function modifyTree($node, &$parent, $configs)
 {
     foreach ($configs as $config) {
         if ($config['action'] === 'setNodeValue') {
+
             setNodeValue($node, $parent, $config);
+
+        }elseif($config['action'] === 'setNodeAttribute'){
+
+            setNodeAttribute($node, $parent, $config);
         }
     }
 }
@@ -28,6 +42,7 @@ function walkModifyXMLTree($xml, $parent, $config, $path = [])
         if ($node->count()) {
 
             walkModifyXMLTree($node, $xml, $config, $path);
+            modifyTree($node, $xml, $config);
             array_pop($path);
 
         } else {
