@@ -1,4 +1,7 @@
 <?php
+
+require_once (__DIR__ . '/snippet.php');
+
 function getConfigurations()
 {
     $config = [];
@@ -23,6 +26,13 @@ function getConfigurations()
         'attribute' => 'type',
         'path' => '*',
         'value' => 'net_customer',
+    ];
+
+    $config[] = [
+        'action' => 'addChildNode',
+        'nodename' => 'SERVICE_MODULE',
+        'path' => '*',
+        'snippet' => getSnippet('EDUCATION'),
     ];
 
     return $config;

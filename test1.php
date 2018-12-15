@@ -1,6 +1,24 @@
 <?php
 header("Content-Type:text/html;charset=ISO-8859-1");
 
+
+function sxml_append(SimpleXMLElement $to, SimpleXMLElement $from) {
+    $toDom = dom_import_simplexml($to);
+    $fromDom = dom_import_simplexml($from);
+    $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
+}
+
+
+function addChildNode($node, &$parent, $config)
+{
+    $nodename = $config['nodename'];
+    if ($node->getName() === $nodename) {
+        $child = simplexml_load_string($config['snippet']);
+        sxml_append($parent->$nodename, $child);
+    }
+}
+
+
 function setNodeAttribute($node, &$parent, $config)
 {
     $nodename = $config['nodename'];
@@ -28,6 +46,10 @@ function modifyTree($node, &$parent, $configs)
         }elseif($config['action'] === 'setNodeAttribute'){
 
             setNodeAttribute($node, $parent, $config);
+
+        }elseif($config['action'] === 'addChildNode'){
+
+            addChildNode($node, $parent, $config);
         }
     }
 }
