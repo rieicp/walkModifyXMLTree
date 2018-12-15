@@ -30,20 +30,32 @@ class XmlHandler
         }
     }
 
-    public function setNodeValue($node, &$parent, $config)
+    public function setNodeValue($node, &$parent, $config, $type)
     {
-        $nodename = $config['nodename'];
-        if ($node->getName() === $nodename) {
-            $parent->$nodename = $config['value'];
+        if ($type === 'leaf') { //setNodeValue只适用于叶节点
+            $nodename = $config['nodename'];
+            if ($nodename === '*') {
+                $nodename = '*|leaf';
+            }
+            if ($nodename === '*|leaf') {
+                $thisname = $node->getName();
+                if ((string)$parent->$thisname === 'str1234') { //若叶节点为虚假值'str1234'则设置为新值
+                    $parent->$thisname = $config['value'];
+                }
+            } else {
+                if ($node->getName() === $nodename) {
+                    $parent->$nodename = $config['value'];
+                }
+            }
         }
     }
 
-    public function modifyTree($node, &$parent, $configs)
+    public function modifyTree($node, &$parent, $configs, $type)
     {
         foreach ($configs as $config) {
             if ($config['action'] === 'setNodeValue') {
 
-                $this->setNodeValue($node, $parent, $config);
+                $this->setNodeValue($node, $parent, $config, $type);
 
             }elseif($config['action'] === 'setNodeAttribute'){
 
@@ -63,16 +75,18 @@ class XmlHandler
 
             $path[] = $node->getName();
 
-            if ($node->count()) {
+            if ($node->count()) { //非叶节点
 
+                $type = 'notleaf';
                 $this->handle($node, $xml, $config, $debug, $path);
-                $this->modifyTree($node, $xml, $config);
+                $this->modifyTree($node, $xml, $config, $type);
                 array_pop($path);
 
-            } else {
+            } else { //叶节点
 
+                $type = 'leaf';
                 array_pop($path);
-                $this->modifyTree($node, $xml, $config);
+                $this->modifyTree($node, $xml, $config, $type);
 
                 if ($debug) {
                     echo '<hr />';
