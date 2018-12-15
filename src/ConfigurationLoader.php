@@ -64,6 +64,42 @@ class ConfigurationLoader
             'value' => 'Sabc Wdef',
         ];
 
+        $config[] = [
+            'action' => 'setNodeValue',
+            'nodename' => 'PHONE',
+            'path' => '*',
+            'value' => '+49.521.1234567',
+        ];
+
+    $couse_id = 'AKU-0123456';
+        $config[] = [
+            'action' => 'setNodeValue',
+            'nodename' => 'PRODUCT_ID',
+            'path' => 'NEW_CATALOG\SERVICE',
+            'value' => $couse_id,
+        ];
+
+        $config[] = [
+            'action' => 'setNodeValue',
+            'nodename' => 'COURSE_ID',
+            'path' => 'NEW_CATALOG\SERVICE\SERVICE_DETAILS\SERVICE_MODULE\EDUCATION',
+            'value' => $couse_id,
+        ];
+
+        $config[] = [
+            'action' => 'setNodeValue',
+            'nodename' => 'TITLE',
+            'path' => 'NEW_CATALOG\SERVICE\SERVICE_DETAILS',
+            'value' => 'Abcdefg',
+        ];
+
+        $config[] = [
+            'action' => 'setNodeValue',
+            'nodename' => 'TYPE',
+            'path' => 'NEW_CATALOG\SERVICE\SERVICE_DETAILS\STUDY_COURSE\ACCREDITATION',
+            'value' => '1',
+        ];
+
 //修改属性----------------------------------------------------------------------
 
         $config[] = [
@@ -90,16 +126,29 @@ class ConfigurationLoader
             'value' => '1',
         ];
 
-//增加节点-----------------------------------------------------------------------
+        $config[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => 'CONTACT_ROLE',
+            'attribute' => 'type',
+            'path' => '*',
+            'value' => '1',
+        ];
 
-        $snippet = new XmlSnippet();
-        $section = $snippet->getSnippet('EDUCATION');
+        //??????
+        $config[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => 'EDUCATION',
+            'attribute' => 'type',
+            'path' => '*',
+            'value' => 'true',
+        ];
 
         $config[] = [
-            'action' => 'addChildNode',
-            'nodename' => 'SERVICE_MODULE',
+            'action' => 'setNodeAttribute',
+            'nodename' => 'INSTRUCTION_FORM',
+            'attribute' => 'type',
             'path' => '*',
-            'snippet' => $section,
+            'value' => '1',
         ];
 
         return $config;
