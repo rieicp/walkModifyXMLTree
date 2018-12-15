@@ -1,7 +1,18 @@
 <?php
 header("Content-Type:text/html;charset=ISO-8859-1");
 
-function walkModifyXMLTree($xml, $parent, $path = [])
+function modifyTree($node, &$parent, $configs)
+{
+    foreach ($configs as $config) {
+        $prop = $config['property'];
+        if ($node->getName() === $prop) {
+            $parent->$prop = $config['setvalue'];
+        }
+    }
+}
+
+
+function walkModifyXMLTree($xml, $parent, $config, $path = [])
 {
     foreach ($xml->children() as $node) {
 
@@ -9,17 +20,17 @@ function walkModifyXMLTree($xml, $parent, $path = [])
 
         if ($node->count()) {
 
-            walkModifyXMLTree($node, $xml, $path);
+            walkModifyXMLTree($node, $xml, $config, $path);
             array_pop($path);
 
         } else {
 
             array_pop($path);
+            echo '<hr />';
             print_r($path);
 
-            if ($node->getName() === 'LANGUAGE'){
-                $xml->LANGUAGE = 'eng';
-            }
+            modifyTree($node, $xml, $config);
+
             echo '<h3>' . $node->getName() . '</h3>';
             echo '<p>attributes: ';
             foreach ($node->attributes() as $name => $vl) {
@@ -35,14 +46,16 @@ function walkModifyXMLTree($xml, $parent, $path = [])
 }
 
 require_once (__DIR__ . '/exampleXML.php');
+require_once (__DIR__ . '/config.php');
 
 $str = getExampleXML();
+$config = getConfigurations();
 
 $xml = simplexml_load_string($str);
 $parent = null;
 
-$xml2 = walkModifyXMLTree($xml, $parent);
+$xml2 = walkModifyXMLTree($xml, $parent, $config);
 
 echo '<hr />';
 
-var_dump( $xml2->asXML() );
+echo $xml2->asXML();
