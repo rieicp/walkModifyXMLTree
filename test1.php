@@ -1,12 +1,28 @@
 <?php
 header("Content-Type:text/html;charset=ISO-8859-1");
 
-function walkModifyXMLTree($xml, $parent)
+function walkModifyXMLTree($xml, $parent, $path = [])
 {
+    $counter = -1;
     foreach ($xml->children() as $node) {
-        if ($node->count()) {
-            walkModifyXMLTree($node, $xml);
+        $counter++;
+
+        $count = $node->count();
+        $path[] = $node->getName();
+
+        if ($count) {
+
+            walkModifyXMLTree($node, $xml, $path);
+
+            if ($counter >= $count) {
+                array_pop($path);
+            }
+
         } else {
+
+            array_pop($path);
+            print_r($path);
+
             if ($node->getName() === 'LANGUAGE'){
                 $xml->LANGUAGE = 'eng';
             }
