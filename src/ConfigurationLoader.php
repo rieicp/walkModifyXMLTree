@@ -10,9 +10,9 @@ class ConfigurationLoader
     {
         $config = [];
 
-        /**
-         * 首先将所有叶节点的虚假值从'str1234'设为空
-         */
+/**
+ * 首先将所有叶节点的虚假值从'str1234'设为空
+ */
         $config[] = [
             'action' => 'setNodeValue',
             'nodename' => '*|leaf', //所有的叶节点
@@ -20,7 +20,7 @@ class ConfigurationLoader
             'value' => '',
         ];
 
-        //---------------------------------------------------
+//修改（叶）节点的值---------------------------------------------------
 
         $config[] = [
             'action' => 'setNodeValue',
@@ -58,6 +58,15 @@ class ConfigurationLoader
         ];
 
         $config[] = [
+            'action' => 'setNodeValue',
+            'nodename' => 'NAME',
+            'path' => 'HEADER\SUPPLIER\ADDRESS',
+            'value' => 'Sabc Wdef',
+        ];
+
+//修改属性----------------------------------------------------------------------
+
+        $config[] = [
             'action' => 'setNodeAttribute',
             'nodename' => 'SERVICE_PRICE',
             'attribute' => 'type',
@@ -65,13 +74,32 @@ class ConfigurationLoader
             'value' => 'net_customer',
         ];
 
+        $config[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => 'SEGMENT_TYPE',
+            'attribute' => 'type',
+            'path' => '*',
+            'value' => '1',
+        ];
+
+        $config[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => 'EDUCATION_TYPE',
+            'attribute' => 'type',
+            'path' => '*',
+            'value' => '1',
+        ];
+
+//增加节点-----------------------------------------------------------------------
+
         $snippet = new XmlSnippet();
+        $section = $snippet->getSnippet('EDUCATION');
 
         $config[] = [
             'action' => 'addChildNode',
             'nodename' => 'SERVICE_MODULE',
             'path' => '*',
-            'snippet' => $snippet->getSnippet('EDUCATION'),
+            'snippet' => $section,
         ];
 
         return $config;
