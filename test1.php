@@ -1,12 +1,19 @@
 <?php
 header("Content-Type:text/html;charset=ISO-8859-1");
 
+function setNodeValue($node, &$parent, $config)
+{
+    $nodename = $config['nodename'];
+    if ($node->getName() === $nodename) {
+        $parent->$nodename = $config['value'];
+    }
+}
+
 function modifyTree($node, &$parent, $configs)
 {
     foreach ($configs as $config) {
-        $prop = $config['property'];
-        if ($node->getName() === $prop) {
-            $parent->$prop = $config['setvalue'];
+        if ($config['action'] === 'setNodeValue') {
+            setNodeValue($node, $parent, $config);
         }
     }
 }

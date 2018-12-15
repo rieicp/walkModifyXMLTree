@@ -4,15 +4,25 @@ function getConfigurations()
     $config = [];
 
     $config[] = [
-        'property' => 'COUNTRY_CODED',
+        'action' => 'setNodeValue',
+        'nodename' => 'COUNTRY_CODED',
         'path' => '*',
-        'setvalue' => 'DE',
+        'value' => 'DE',
     ];
 
     $config[] = [
-        'property' => 'REGULAR_STUDY_PERIOD',
+        'action' => 'setNodeValue',
+        'nodename' => 'REGULAR_STUDY_PERIOD',
         'path' => '*',
-        'setvalue' => '2',
+        'value' => '2',
+    ];
+
+    $config[] = [
+        'action' => 'setNodeAttribute',
+        'nodename' => 'SERVICE_PRICE',
+        'attribute' => 'type',
+        'path' => '*',
+        'value' => 'net_customer',
     ];
 
     return $config;
