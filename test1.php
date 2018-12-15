@@ -3,20 +3,14 @@ header("Content-Type:text/html;charset=ISO-8859-1");
 
 function walkModifyXMLTree($xml, $parent, $path = [])
 {
-    $counter = -1;
     foreach ($xml->children() as $node) {
-        $counter++;
 
-        $count = $node->count();
         $path[] = $node->getName();
 
-        if ($count) {
+        if ($node->count()) {
 
             walkModifyXMLTree($node, $xml, $path);
-
-            if ($counter >= $count) {
-                array_pop($path);
-            }
+            array_pop($path);
 
         } else {
 
@@ -34,6 +28,7 @@ function walkModifyXMLTree($xml, $parent, $path = [])
             echo '</p>';
             echo '<p>node-value: ' . (string)$node . '</p>';
         }
+
     }
 
     return $xml;
