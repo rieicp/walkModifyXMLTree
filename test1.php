@@ -21,7 +21,7 @@ $str = $xmlloader->getExampleXML($xmlfile);
 $xml = simplexml_load_string($str);
 
 $parent = null;
-$premiumconfig = $premiumconfiguration->loadConfigurations();
+$premiumconfig = $premiumconfiguration->getConfigurations();
 //先执行节点增删
 $xml2 = $xmlhandler->handle($xml, $parent, $premiumconfig, true);
 
@@ -31,7 +31,7 @@ echo $xml2->asXML() . '<br />';
 
 
 $parent = null;
-$config = $configloader->loadConfigurations();
+$config = $configloader->getConfigurations();
 //再执行其它节点操作
 $xml3 = $xmlhandler->handle($xml2, $parent, $config, true);
 echo '<hr />';

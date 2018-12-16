@@ -81,19 +81,19 @@ class XmlHandler
     public function modifyTree($node, &$parent, $configs, $type, $path)
     {
         foreach ($configs as $config) {
-            if ($config['action'] === 'setNodeValue') {
+            if ($config['action'] === 'setNodeValue') { //修改Node值（针对叶节点）
 
                 $this->setNodeValue($node, $parent, $config, $type, $path);
 
-            }elseif($config['action'] === 'setNodeAttribute'){
+            }elseif($config['action'] === 'setNodeAttribute'){ //修改Node属性
 
                 $this->setNodeAttribute($node, $parent, $config, $path);
 
-            }elseif($config['action'] === 'addChildNode'){
+            }elseif($config['action'] === 'addChildNode'){ //添加childNode
 
                 $this->addChildNode($node, $parent, $config, $path);
 
-            }elseif($config['action'] === 'removeChildNode'){
+            }elseif($config['action'] === 'removeChildNode'){ //删除childNode
 
                 $this->removeChildNode($node, $parent, $config, $path);
             }
