@@ -1,13 +1,3 @@
-<?php
-
-namespace WalkModifyXmlTree;
-
-class XmlSnippet
-{
-    public function getSnippet($name)
-    {
-
-        $snippet_education = <<<EOF
                     <EDUCATION type="true">
                         <COURSE_ID>AKU-0123456789</COURSE_ID>
                         <EXTENDED_INFO>
@@ -30,17 +20,3 @@ class XmlSnippet
                             </EXTENDED_INFO>
                         </MODULE_COURSE>
                     </EDUCATION>
-EOF;
-
-
-        switch ($name){
-            case 'EDUCATION':
-                return $snippet_education;
-                break;
-            default:
-                return '';
-                break;
-        }
-    }
-
-}

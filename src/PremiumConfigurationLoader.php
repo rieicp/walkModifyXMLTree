@@ -2,7 +2,7 @@
 
 namespace WalkModifyXmlTree;
 
-use WalkModifyXmlTree\XmlSnippet;
+use WalkModifyXmlTree\XmlSnippetLoader;
 
 class PremiumConfigurationLoader
 {
@@ -12,8 +12,8 @@ class PremiumConfigurationLoader
 
 //增加节点-----------------------------------------------------------------------
 
-        $snippet = new XmlSnippet();
-        $section = $snippet->getSnippet('EDUCATION');
+        $snippet = new XmlSnippetLoader();
+        $section = $snippet->loadSnippet(__DIR__ . '/../Resources/snippet/education.xml');
 
         $config[] = [
             'action' => 'addChildNode',
