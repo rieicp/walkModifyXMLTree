@@ -20,13 +20,14 @@ $xmlfile = __DIR__ . '/Resources/xml/sample01.xml';
 $str = $xmlloader->getExampleXML($xmlfile);
 $xml = simplexml_load_string($str);
 $parent = null;
-$premiumconfig = $premiumconfiguration->getConfigurations();
+$premiumconfigs = $premiumconfiguration->loadConfigurations();
 //先执行节点增删
-$xml2 = $xmlhandler->handle($xml, $parent, $premiumconfig, false);
-
+foreach ($premiumconfigs as $premiumconfig){
+    $xml = $xmlhandler->handle($xml, $parent, array($premiumconfig), false);
+}
 
 $parent = null;
-$config = $configloader->getConfigurations();
+$configs = $configloader->loadConfigurations();
 //再执行其它节点操作
-$xml3 = $xmlhandler->handle($xml2, $parent, $config, false);
-echo $xml3->asXML();
+$xml2 = $xmlhandler->handle($xml, $parent, $configs, false);
+echo $xml2->asXML();

@@ -6,7 +6,7 @@ use WalkModifyXmlTree\XmlSnippet;
 
 class PremiumConfigurationLoader
 {
-    public function getConfigurations()
+    public function loadConfigurations()
     {
         $config = [];
 
@@ -21,6 +21,16 @@ class PremiumConfigurationLoader
             'path' => '*',
             'snippet' => $section,
         ];
+
+//删除节点-----------------------------------------------------------------------
+
+        $config[] = [
+            'action' => 'removeChildNode',
+            'nodename' => 'STUDY_COURSE',
+            'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
+        ];
+
+
 
         return $config;
     }

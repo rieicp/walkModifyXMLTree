@@ -2,11 +2,9 @@
 
 namespace WalkModifyXmlTree;
 
-use WalkModifyXmlTree\XmlSnippet;
-
 class ConfigurationLoader
 {
-    public function getConfigurations()
+    public function loadConfigurations()
     {
         $config = [];
 
@@ -26,7 +24,7 @@ class ConfigurationLoader
             'action' => 'setNodeValue',
             'nodename' => 'CATALOG_ID',
             'path' => '*',
-            'value' => 'KUR-0123456789',
+            'value' => 'CAT-0123456789',
         ];
 
         $config[] = [
@@ -50,17 +48,17 @@ class ConfigurationLoader
             'value' => 'Germany',
         ];
 
-        $config[] = [
+/*        $config[] = [
             'action' => 'setNodeValue',
             'nodename' => 'REGULAR_STUDY_PERIOD',
             'path' => '*',
             'value' => '2',
-        ];
-
+        ];*/
+        
         $config[] = [
             'action' => 'setNodeValue',
             'nodename' => 'NAME',
-            'path' => 'HEADER\SUPPLIER\ADDRESS',
+            'path' => 'HEADER/SUPPLIER/ADDRESS',
             'value' => 'Sabc Wdef',
         ];
 
@@ -75,32 +73,47 @@ class ConfigurationLoader
         $config[] = [
             'action' => 'setNodeValue',
             'nodename' => 'PRODUCT_ID',
-            'path' => 'NEW_CATALOG\SERVICE',
+            'path' => 'NEW_CATALOG/SERVICE',
             'value' => $couse_id,
         ];
 
         $config[] = [
             'action' => 'setNodeValue',
             'nodename' => 'COURSE_ID',
-            'path' => 'NEW_CATALOG\SERVICE\SERVICE_DETAILS\SERVICE_MODULE\EDUCATION',
+            'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS/SERVICE_MODULE/EDUCATION',
             'value' => $couse_id,
         ];
 
         $config[] = [
             'action' => 'setNodeValue',
             'nodename' => 'TITLE',
-            'path' => 'NEW_CATALOG\SERVICE\SERVICE_DETAILS',
+            'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
             'value' => 'Abcdefg',
         ];
 
         $config[] = [
             'action' => 'setNodeValue',
+            'nodename' => 'DESCRIPTION_LONG',
+            'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
+            'value' => base64_encode(random_bytes(50)),
+        ];
+
+        $config[] = [
+            'action' => 'setNodeValue',
             'nodename' => 'TYPE',
-            'path' => 'NEW_CATALOG\SERVICE\SERVICE_DETAILS\STUDY_COURSE\ACCREDITATION',
+            'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS/STUDY_COURSE/ACCREDITATION',
             'value' => '1',
         ];
 
 //修改属性----------------------------------------------------------------------
+
+        $config[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => 'EXTENDED_INFO',
+            'attribute' => 'input_type',
+            'path' => 'HEADER/SUPPLIER',
+            'value' => '2',
+        ];
 
         $config[] = [
             'action' => 'setNodeAttribute',
@@ -123,7 +136,7 @@ class ConfigurationLoader
             'nodename' => 'EDUCATION_TYPE',
             'attribute' => 'type',
             'path' => '*',
-            'value' => '1',
+            'value' => '1234567',
         ];
 
         $config[] = [
@@ -146,6 +159,14 @@ class ConfigurationLoader
         $config[] = [
             'action' => 'setNodeAttribute',
             'nodename' => 'INSTRUCTION_FORM',
+            'attribute' => 'type',
+            'path' => '*',
+            'value' => '1',
+        ];
+
+        $config[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => 'ORGANIZATIONAL_FORM',
             'attribute' => 'type',
             'path' => '*',
             'value' => '1',
