@@ -8,6 +8,6 @@ class PremiumConfigurationLoader
 {
     public function getConfigurations()
     {
-        return require_once (__DIR__ . '/../configuration/premium.php');
+        return require_once (__DIR__ . '/../config/premium.php');
     }
 }

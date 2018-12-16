@@ -3,7 +3,7 @@
 $config = [];
 
 /**
-* 首先将所有叶节点的虚假值从'str1234'设为空
+* 首先将所有叶节点的虚假值如'str1234'设为空
 */
 $config[] = [
 'action' => 'setNodeValue',

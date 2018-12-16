@@ -6,7 +6,7 @@ require_once (__DIR__ . '/vendor/autoload.php');
 use WalkModifyXmlTree\XmlLoader;
 use WalkModifyXmlTree\PremiumConfigurationLoader;
 use WalkModifyXmlTree\ConfigurationLoader;
-use WalkModifyXmlTree\XmlHandler;
+use WalkModifyXmlTree\XmlGerneralHandler;
 
 $xmlloader = new XmlLoader();
 /**
@@ -14,7 +14,7 @@ $xmlloader = new XmlLoader();
  */
 $premiumconfiguration = new PremiumConfigurationLoader();
 $configloader = new ConfigurationLoader(); //ConfigurationLoader是对应普通节点操作的配置
-$xmlhandler = new XmlHandler();
+$xmlhandler = new XmlGerneralHandler();
 
 $xmlfile = __DIR__ . '/Resources/xml/sample01.xml';
 $str = $xmlloader->getExampleXML($xmlfile);

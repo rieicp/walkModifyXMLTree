@@ -2,6 +2,8 @@
 
 namespace WalkModifyXmlTree;
 
+//todo
+//using xPath
 class XmlHandler
 {
     public function sxml_append(\SimpleXMLElement $to, \SimpleXMLElement $from) {
@@ -10,84 +12,43 @@ class XmlHandler
         $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
     }
 
+    public function keepOnlyTheseNodes($node, &$parent, $config, $path)
+    {
+        //todo
+        return;
+    }
+
     public function removeChildNode($node, &$parent, $config, $path)
     {
-        if (
-            ($config['path'] === '*') ||
-            ($config['path'] === implode('/', $path))
-        ) {
-            $nodename = $config['nodename'];
-            if ($node->getName() === $nodename) {
-                $dom=dom_import_simplexml($node);
-                $dom->parentNode->removeChild($dom);
-            }
-        }
+        //todo
+        return;
     }
 
     public function addChildNode($node, &$parent, $config, $path)
     {
-        if (
-            ($config['path'] === '*') ||
-            ($config['path'] === implode('/', $path))
-        ) {
-            $nodename = $config['nodename'];
-            if ($node->getName() === $nodename) {
-                $child = simplexml_load_string($config['snippet']);
-                $this->sxml_append($parent->$nodename, $child);
-            }
-        }
+        //todo
+        return;
     }
 
 
     public function setNodeAttribute($node, &$parent, $config, $path)
     {
-        if (
-            ($config['path'] === '*') ||
-            ($config['path'] === implode('/', $path))
-        ) {
-            $nodename = $config['nodename'];
-            $attr = $config['attribute'];
-            if ($node->getName() === $nodename) {
-                $parent->$nodename->attributes()->$attr = $config['value'];
-            }
-        }
+        //todo
+        return;
     }
 
     public function setNodeValue($node, &$parent, $config, $type, $path)
     {
-        if (
-            ($config['path'] === '*') ||
-            ($config['path'] === implode('/', $path))
-        ) {
-            if ($type === 'leaf') { //setNodeValue只适用于叶节点
-                $nodename = $config['nodename'];
-                if ($nodename === '*') {
-                    $nodename = '*|leaf';
-                }
-                if ($nodename === '*|leaf') {
-                    $thisname = $node->getName();
-                    if ((string)$parent->$thisname === 'str1234') { //若叶节点为虚假值'str1234'则设置为新值
-                        $parent->$thisname = $config['value'];
-                    }
-                } else {
-                    if ($node->getName() === $nodename) {
-                        $parent->$nodename = $config['value'];
-                    }
-                }
-            }
-        }
+        //todo
+        return;
     }
 
     public function modifyTree($node, &$parent, $configs, $type, $path)
     {
         foreach ($configs as $config) {
-            if ($config['action'] === 'setNodeValue') { //修改Node值（针对叶节点）
+            if($config['action'] === 'keepOnlyTheseNodes'){ //仅保留这些childNode
 
-                $this->setNodeValue($node, $parent, $config, $type, $path);
-
-            }elseif($config['action'] === 'setNodeAttribute'){ //修改Node属性
-
-                $this->setNodeAttribute($node, $parent, $config, $path);
+                $this->keepOnlyTheseNodes($node, $parent, $config, $path);
 
             }elseif($config['action'] === 'addChildNode'){ //添加childNode
 
@@ -96,6 +57,14 @@ class XmlHandler
             }elseif($config['action'] === 'removeChildNode'){ //删除childNode
 
                 $this->removeChildNode($node, $parent, $config, $path);
+
+            }elseif($config['action'] === 'setNodeValue') { //修改Node值（针对叶节点）
+
+                $this->setNodeValue($node, $parent, $config, $type, $path);
+
+            }elseif($config['action'] === 'setNodeAttribute'){ //修改Node属性
+
+                $this->setNodeAttribute($node, $parent, $config, $path);
             }
         }
     }
@@ -103,41 +72,9 @@ class XmlHandler
 
     public function handle($xml, $parent, $config, $debug = true, $path = [])
     {
-        foreach ($xml->children() as $node) {
-
-            if ($node->getName() === 'STUDY_COURSE'){
-                echo '';
-            }
-            $path[] = $node->getName();
-
-            if ($node->count()) { //非叶节点
-
-                $type = 'notleaf';
-                $this->handle($node, $xml, $config, $debug, $path);
-                array_pop($path);
-                $this->modifyTree($node, $xml, $config, $type, $path);
-
-            } else { //叶节点
-
-                $type = 'leaf';
-                array_pop($path);
-                $this->modifyTree($node, $xml, $config, $type, $path);
-
-                if ($debug) {
-                    echo '<hr />';
-                    echo '<p>Path = ['. implode('/', $path) .']</p>';
-                    echo '<h3>' . $node->getName() . '</h3>';
-                    echo '<p>attributes: ';
-                    foreach ($node->attributes() as $name => $vl) {
-                        echo $name . " = " . $vl . " | ";
-                    }
-                    echo '</p>';
-                    echo '<p>node-value: ' . (string)$node . '</p>';
-                }
-            }
-
-        }
-
+        //todo
+        $type = null;
+        $this->modifyTree($xml, $parent, $config, $type, $path);
         return $xml;
     }
 }
