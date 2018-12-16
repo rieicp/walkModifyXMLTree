@@ -4,7 +4,7 @@ namespace WalkModifyXmlTree;
 
 //todo
 //using xPath
-class XmlHandler
+class XmlXpathHandler
 {
     public function sxml_append(\SimpleXMLElement $to, \SimpleXMLElement $from) {
         $toDom = dom_import_simplexml($to);
