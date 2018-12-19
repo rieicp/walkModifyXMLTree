@@ -4,6 +4,16 @@ use WalkModifyXmlTree\XmlSnippetLoader;
 
 $config = [];
 
+
+//删除节点-----------------------------------------------------------------------
+
+$config[] = [
+    'action' => 'removeChildNode',
+    'nodename' => 'STUDY_COURSE',
+    'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
+];
+
+
 //增加节点-----------------------------------------------------------------------
 
 $snippet = new XmlSnippetLoader();
@@ -14,14 +24,6 @@ $config[] = [
     'nodename' => 'SERVICE_MODULE',
     'path' => '*',
     'snippet' => $section,
-];
-
-//删除节点-----------------------------------------------------------------------
-
-$config[] = [
-    'action' => 'removeChildNode',
-    'nodename' => 'STUDY_COURSE',
-    'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
 ];
 
 

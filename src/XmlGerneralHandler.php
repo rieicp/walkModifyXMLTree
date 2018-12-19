@@ -8,6 +8,11 @@ class XmlGerneralHandler
         $toDom = dom_import_simplexml($to);
         $fromDom = dom_import_simplexml($from);
         $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
+        /**
+         * 不仅仅dom的元素变化了，simplexml的元素也相应变化了！
+         * 也就是说，dom和simplexml非相互独立的系统，
+         * 而是一体两面，水乳交融的关系
+         */
     }
 
     public function keepOnlyTheseNodes($node, &$parent, $config, $path)
