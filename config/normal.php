@@ -39,15 +39,8 @@ $config[] = [
 'action' => 'setNodeValue',
 'nodename' => 'COUNTRY',
 'path' => '*',
-'value' => 'Germany',
+'value' => 'D',
 ];
-
-/*        $config[] = [
-'action' => 'setNodeValue',
-'nodename' => 'REGULAR_STUDY_PERIOD',
-'path' => '*',
-'value' => '2',
-];*/
 
 $config[] = [
 'action' => 'setNodeValue',
@@ -90,13 +83,6 @@ $config[] = [
 'nodename' => 'DESCRIPTION_LONG',
 'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
 'value' => base64_encode(random_bytes(50)),
-];
-
-$config[] = [
-'action' => 'setNodeValue',
-'nodename' => 'TYPE',
-'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS/STUDY_COURSE/ACCREDITATION',
-'value' => '1',
 ];
 
 //修改属性----------------------------------------------------------------------
@@ -164,6 +150,22 @@ $config[] = [
 'attribute' => 'type',
 'path' => '*',
 'value' => '1',
+];
+
+$config[] = [
+    'action' => 'setNodeAttribute',
+    'nodename' => 'EDUCATION_TYPE',
+    'attribute' => 'type',
+    'path' => '*',
+    'value' => '100',
+];
+
+$config[] = [
+    'action' => 'setNodeAttribute',
+    'nodename' => 'INSTITUTION',
+    'attribute' => 'type',
+    'path' => '*',
+    'value' => '101',
 ];
 
 return $config;

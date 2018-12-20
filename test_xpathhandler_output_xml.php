@@ -31,12 +31,12 @@ foreach ($premiumconfigs as $premiumconfig){
     $xml = $xmlhandler->handle($xml);
 }
 
-echo $xml->asXML();
+//echo $xml->asXML();
 
-/*//$parent = null;
+//$parent = null;
 $configs = $configloader->getConfigurations();
 //再执行其它节点操作
 //$xml2 = $xmlhandler->handle($xml, $parent, $configs, false);
-$xmlhandler->setConfigs(array($configs));
+$xmlhandler->setConfigs($configs);
 $xml2 = $xmlhandler->handle($xml);
-echo $xml2->asXML();*/
+echo $xml2->asXML();

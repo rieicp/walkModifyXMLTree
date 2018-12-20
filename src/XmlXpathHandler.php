@@ -34,37 +34,45 @@ class XmlXpathHandler
     {
         $childnode = simplexml_load_string($this->config['snippet']);
         $this->sxml_append($node, $childnode);
-        $dom = dom_import_simplexml($node);
-        return simplexml_import_dom($dom->ownerDocument);
-        /**
-         * ownerDocument返回整个xml文档！而非仅仅该node
-         * 可见node是包含着整个xml文档的完整信息的
-         */
     }
 
     public function removeChildNode($node)
     {
         $dom = dom_import_simplexml($node);
         $dom->parentNode->removeChild($dom);
-        return simplexml_import_dom($dom->ownerDocument);
     }
 
     public function keepOnlyTheseNodes($node)
     {
         //todo
-        return;
-    }
-
-    public function setNodeAttribute($node)
-    {
-        //todo
-        return;
     }
 
     public function setNodeValue($node)
     {
-        //todo
-        return;
+        $nodename = $this->config['nodename'];
+        if ($nodename === '*') {
+            $nodename = '*|leaf';
+        }
+        if ($nodename === '*|leaf') {
+            //todo: 将'str1234' 设置为常量
+            if (dom_import_simplexml($node)->nodeValue === 'str1234') { //若叶节点为虚假值'str1234'则设置为新值
+                dom_import_simplexml($node)->nodeValue = $this->config['value'];
+            }
+        } else {
+            if ($node->getName() === $nodename) {
+                dom_import_simplexml($node)->nodeValue = $this->config['value'];
+            }
+        }
+    }
+
+    public function setNodeAttribute($node)
+    {
+        dom_import_simplexml($node)->setAttribute($this->config['attribute'], $this->config['value']);
+    }
+
+    public function removeNodeAttribute($node)
+    {
+            dom_import_simplexml($node)->removeAttribute($this->config['attribute']);
     }
 
     public function modifyTree($nodes)
@@ -72,23 +80,27 @@ class XmlXpathHandler
         foreach ($nodes as $node) {
             if($this->config['action'] === 'keepOnlyTheseNodes'){ //仅保留这些childNode
 
-                return $this->keepOnlyTheseNodes($node);
+                $this->keepOnlyTheseNodes($node);
 
             }elseif($this->config['action'] === 'addChildNode'){ //添加childNode
 
-                return $this->addChildNode($node);
+                $this->addChildNode($node);
 
             }elseif($this->config['action'] === 'removeChildNode'){ //删除childNode
 
-                return $this->removeChildNode($node);
+                $this->removeChildNode($node);
 
             }elseif($this->config['action'] === 'setNodeValue') { //修改Node值（针对叶节点）
 
-                return $this->setNodeValue($node);
+                $this->setNodeValue($node);
 
-            }elseif($this->onfig['action'] === 'setNodeAttribute'){ //修改Node属性
+            }elseif($this->config['action'] === 'setNodeAttribute'){ //修改Node属性
 
-                return $this->setNodeAttribute($node);
+                $this->setNodeAttribute($node);
+
+            }elseif($this->config['action'] === 'removeNodeAttribute'){ //修改Node属性
+
+                $this->removeNodeAttribute($node);
             }
         }
     }
@@ -100,16 +112,23 @@ class XmlXpathHandler
 
             $this->config = $config;
 
-            if ($config['path'] === '*' || $config['path'] === '*|leaf') { //模糊匹配
+            if ($config['path'] === '*') { //模糊匹配
 
-                $nodes = $xml->xpath('//' . $config['nodename']);
+                if ($config['nodename'] === '*|leaf') { //若是针对所有叶节点
+
+                    $nodes = $xml->xpath('//*[not(*)]');
+
+                }else { //若非叶节点
+
+                    $nodes = $xml->xpath('//' . $config['nodename']);
+                }
 
             }else{ //精确匹配
 
                 $nodes = $xml->xpath($config['path'] . '/' . $config['nodename']);
             }
 
-            $xml = $this->modifyTree($nodes);
+            $this->modifyTree($nodes);
         }
 
         return $xml;
