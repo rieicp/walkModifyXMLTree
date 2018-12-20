@@ -36,15 +36,18 @@ class XmlXpathHandler
         $this->sxml_append($node, $childnode);
     }
 
-    public function removeChildNode($node)
+    public function removeNode($node)
     {
         $dom = dom_import_simplexml($node);
         $dom->parentNode->removeChild($dom);
     }
 
-    public function keepOnlyTheseNodes($node)
+    public function keepOnlyTheseNodesOneByOne($node, $keptNodes)
     {
-        //todo
+        if(!in_array($node, $keptNodes)){
+            $this->removeNode($node);
+        }
+        echo '';
     }
 
     public function setNodeValue($node)
@@ -75,20 +78,20 @@ class XmlXpathHandler
             dom_import_simplexml($node)->removeAttribute($this->config['attribute']);
     }
 
-    public function modifyTree($nodes)
+    public function modifyTree($nodes, $keptNodes=null)
     {
         foreach ($nodes as $node) {
             if($this->config['action'] === 'keepOnlyTheseNodes'){ //仅保留这些childNode
 
-                $this->keepOnlyTheseNodes($node);
+                $this->keepOnlyTheseNodesOneByOne($node, $keptNodes);
 
             }elseif($this->config['action'] === 'addChildNode'){ //添加childNode
 
                 $this->addChildNode($node);
 
-            }elseif($this->config['action'] === 'removeChildNode'){ //删除childNode
+            }elseif($this->config['action'] === 'removeNode'){ //删除childNode
 
-                $this->removeChildNode($node);
+                $this->removeNode($node);
 
             }elseif($this->config['action'] === 'setNodeValue') { //修改Node值（针对叶节点）
 
@@ -112,25 +115,54 @@ class XmlXpathHandler
 
             $this->config = $config;
 
-            if ($config['path'] === '*') { //模糊匹配
+            if (empty($config['path'])) {
+                
+                if (
+                    (!empty($config['nodePaths'])) && 
+                    (is_array($nodePaths = $config['nodePaths'])) &&
+                    ($config['action'] === 'keepOnlyTheseNodes')
+                ) {
+                    $keptNodes = [];
+                    foreach ($nodePaths as $nodePath){
+                        $keptNodes = $this->appendNodes($keptNodes, $xml->xpath($nodePath.'/ancestor-or-self::*'));
+                        $keptNodes = $this->appendNodes($keptNodes, $xml->xpath($nodePath.'/descendant::*'));
+                    }
+                    $allNodes = $xml->xpath('//*');
+                    $this->modifyTree($allNodes, $keptNodes);
+                }
+                
+            }else{
+                
+                if ($config['path'] === '*') { //模糊匹配
 
-                if ($config['nodename'] === '*|leaf') { //若是针对所有叶节点
+                    if ($config['nodename'] === '*|leaf') { //若是针对所有叶节点
 
-                    $nodes = $xml->xpath('//*[not(*)]');
+                        $nodes = $xml->xpath('//*[not(*)]');
 
-                }else { //若非叶节点
+                    } else { //若非叶节点
 
-                    $nodes = $xml->xpath('//' . $config['nodename']);
+                        $nodes = $xml->xpath('//' . $config['nodename']);
+                    }
+
+                } else { //精确匹配
+
+                    $nodes = $xml->xpath($config['path'] . '/' . $config['nodename']);
                 }
 
-            }else{ //精确匹配
-
-                $nodes = $xml->xpath($config['path'] . '/' . $config['nodename']);
+                $this->modifyTree($nodes);
             }
-
-            $this->modifyTree($nodes);
         }
 
         return $xml;
+    }
+
+
+    public function appendNodes($nodes, $nodes2append)
+    {
+        foreach ($nodes2append as $node) {
+            $nodes[] = $node;
+        }
+
+        return $nodes;
     }
 }

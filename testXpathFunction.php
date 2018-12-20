@@ -1,5 +1,5 @@
 <form method="post">
-    <input name="path" type="text"/>
+    <input name="path" style="width:70%" type="text"/>
     <input type="submit" value="submit"/>
 </form>
 

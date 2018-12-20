@@ -21,7 +21,7 @@ class XmlGerneralHandler
         return;
     }
 
-    public function removeChildNode($node, &$parent, $config, $path)
+    public function removeNode($node, &$parent, $config, $path)
     {
         if (
             ($config['path'] === '*') ||
@@ -101,9 +101,9 @@ class XmlGerneralHandler
 
                 $this->addChildNode($node, $parent, $config, $path);
 
-            }elseif($config['action'] === 'removeChildNode'){ //删除childNode
+            }elseif($config['action'] === 'removeNode'){ //删除childNode
 
-                $this->removeChildNode($node, $parent, $config, $path);
+                $this->removeNode($node, $parent, $config, $path);
 
             }elseif($config['action'] === 'setNodeValue') { //修改Node值（针对叶节点）
 

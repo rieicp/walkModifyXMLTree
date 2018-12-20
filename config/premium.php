@@ -6,13 +6,23 @@ $config = [];
 
 //todo:若此配置文件为空，是否会产生错误？
 
+//仅保留这些节点（及其子节点）------------------------------------------
+$config[] = [
+    'action' => 'keepOnlyTheseNodes',
+    'nodePaths' => [
+        'HEADER/CATALOG',
+        'HEADER/SUPPLIER',
+        'NEW_CATALOG/SERVICE',
+    ]
+];
+
 //删除节点-----------------------------------------------------------------------
 
-$config[] = [
-    'action' => 'removeChildNode',
+/*$config[] = [
+    'action' => 'removeNode',
     'nodename' => 'STUDY_COURSE',
     'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
-];
+];*/
 
 
 //增加节点-----------------------------------------------------------------------
