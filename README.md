@@ -52,6 +52,14 @@
     - Leitfaden
     - open-Qcat-Felder
 
+### 最佳实践 ###
+
+- 执行 testPrintXMLNodePaths.php
+  - 读入example_by_hand_01.xml
+  - 在输入框中填入 //*[not(*)]，提交
+  - 将输出的路径拷贝到config/premium.php中
+    - $config['action'] => 'keepOnlyTheseNodes' 的 ['nodePaths'] => 下
+
 ### 资源 ###
 
 - 路径

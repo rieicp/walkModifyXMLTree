@@ -16,7 +16,7 @@ $premiumconfiguration = new PremiumConfigurationLoader();
 $configloader = new ConfigurationLoader(); //ConfigurationLoader是对应普通节点操作的配置
 $xmlhandler = new XmlGerneralHandler();
 
-$xmlfile = __DIR__ . '/Resources/xml/example_by_hand.xml';
+$xmlfile = __DIR__ . '/Resources/xml/example_by_hand_01.xml';
 $str = $xmlloader->loadExampleXML($xmlfile);
 $xml = simplexml_load_string($str);
 
