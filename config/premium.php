@@ -4,6 +4,7 @@ use WalkModifyXmlTree\XmlSnippetLoader;
 
 $config = [];
 
+//todo:与config/normal.php合并，是否可行？
 //todo:若此配置文件为空，是否会产生错误？
 
 //增加节点-----------------------------------------------------------------------

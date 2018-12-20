@@ -47,7 +47,6 @@ class XmlXpathHandler
         if(!in_array($node, $keptNodes)){
             $this->removeNode($node);
         }
-        echo '';
     }
 
     public function setNodeValue($node)

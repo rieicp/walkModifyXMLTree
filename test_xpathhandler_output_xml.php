@@ -39,4 +39,6 @@ $configs = $configloader->getConfigurations();
 //$xml2 = $xmlhandler->handle($xml, $parent, $configs, false);
 $xmlhandler->setConfigs($configs);
 $xml2 = $xmlhandler->handle($xml);
-echo $xml2->asXML();
+$content = $xml2->asXML();
+$content = preg_replace("/\s*\n\s*\n/", "\n", $content);//空白行整合
+echo $content;

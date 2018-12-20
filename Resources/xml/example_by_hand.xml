@@ -11,9 +11,9 @@
             <SUPPLIER_NAME>feuwirouwo2</SUPPLIER_NAME>
             <ADDRESS>
                 <NAME>MR.Wei</NAME>
-                <ZIP>33602</ZIP>                
-                <CITY>Bonn</CITY>
-                <COUNTRY>Germany</COUNTRY>
+                <ZIP>33602</ZIP>
+                <CITY>Bielefeld</CITY>
+                <COUNTRY>D</COUNTRY>
             </ADDRESS>
             <CONTACT>
                 <CONTACT_ROLE type="1" />
@@ -34,18 +34,18 @@
                 <TITLE>123456789</TITLE>
                 <DESCRIPTION_LONG>bbibbTAUx9re9/5tyadwa1dBFDpo00oun+Hc5tyB4q5BJF5NifNxfoM2qFyEOx1eRK4=</DESCRIPTION_LONG>
                 <CONTACT>
-                  <CONTACT_ROLE type="1" />
-                  <LAST_NAME>Wei</LAST_NAME>
-                  <ADDRESS>
-                    <NAME>MR.Wei</NAME>
-                    <ZIP>33602</ZIP>
-                    <CITY>Bielefeld</CITY>
-                    <COUNTRY_CODED>DE</COUNTRY_CODED>
-                    <COUNTRY>Germany</COUNTRY>
-                    <EMAILS>
-                      <EMAIL>wei@example.com</EMAIL>
-                    </EMAILS>
-                  </ADDRESS>
+                    <CONTACT_ROLE type="1" />
+                    <LAST_NAME>Wei</LAST_NAME>
+                    <ADDRESS>
+                        <NAME>MR.Wei</NAME>
+                        <ZIP>33602</ZIP>
+                        <CITY>Bielefeld</CITY>
+                        <COUNTRY_CODED>DE</COUNTRY_CODED>
+                        <COUNTRY>D</COUNTRY>
+                        <EMAILS>
+                            <EMAIL>wei@example.com</EMAIL>
+                        </EMAILS>
+                    </ADDRESS>
                 </CONTACT>
                 <SERVICE_DATE>
                     <START_DATE>2019-01-01T10:00:00</START_DATE>
@@ -55,9 +55,9 @@
                     <EDUCATION type="true">
                         <COURSE_ID>AKU-00123</COURSE_ID>
                         <EXTENDED_INFO>
-                            <INSTITUTION type="90" />
+                            <INSTITUTION type="101" />
                             <INSTRUCTION_FORM type="1"/>
-                            <EDUCATION_TYPE type="1" />
+                            <EDUCATION_TYPE type="100" />
                         </EXTENDED_INFO>
                         <MODULE_COURSE>
                             <LOCATION>
@@ -65,8 +65,59 @@
                                 <ZIP>33615</ZIP>
                                 <CITY>Bielefeld</CITY>
                                 <COUNTRY_CODED>DE</COUNTRY_CODED>
-                                <COUNTRY>Germany</COUNTRY>
-                            </LOCATION>                            
+                                <COUNTRY>D</COUNTRY>
+                            </LOCATION>
+                            <DURATION type="1" />
+                            <FLEXIBLE_START>true</FLEXIBLE_START>
+                            <EXTENDED_INFO>
+                                <SEGMENT_TYPE type="1" />
+                            </EXTENDED_INFO>
+                        </MODULE_COURSE>
+                    </EDUCATION>
+                </SERVICE_MODULE>
+                <!--<SUPPLIER_ALT_PID>MUK-2901-S5</SUPPLIER_ALT_PID>-->
+            </SERVICE_DETAILS>
+        </SERVICE>
+        <SERVICE>
+            <PRODUCT_ID>AKU-00125</PRODUCT_ID>
+            <COURSE_TYPE>1</COURSE_TYPE>
+            <SERVICE_DETAILS>
+                <TITLE>123456789</TITLE>
+                <DESCRIPTION_LONG>bbibbTAUx9re9/5tyadwa1dBFDpo00oun+Hc5tyB4q5BJF5NifNxfoM2qFyEOx1eRK4=</DESCRIPTION_LONG>
+                <CONTACT>
+                    <CONTACT_ROLE type="1" />
+                    <LAST_NAME>Wei</LAST_NAME>
+                    <ADDRESS>
+                        <NAME>MR.Wei</NAME>
+                        <ZIP>33602</ZIP>
+                        <CITY>Bielefeld</CITY>
+                        <COUNTRY_CODED>DE</COUNTRY_CODED>
+                        <COUNTRY>D</COUNTRY>
+                        <EMAILS>
+                            <EMAIL>wei@example.com</EMAIL>
+                        </EMAILS>
+                    </ADDRESS>
+                </CONTACT>
+                <SERVICE_DATE>
+                    <START_DATE>2019-01-01T10:00:00</START_DATE>
+                    <END_DATE>2019-02-01T10:00:00</END_DATE>
+                </SERVICE_DATE>
+                <SERVICE_MODULE>
+                    <EDUCATION type="true">
+                        <COURSE_ID>AKU-00125</COURSE_ID>
+                        <EXTENDED_INFO>
+                            <INSTITUTION type="101" />
+                            <INSTRUCTION_FORM type="1"/>
+                            <EDUCATION_TYPE type="100" />
+                        </EXTENDED_INFO>
+                        <MODULE_COURSE>
+                            <LOCATION>
+                                <NAME>S1234567</NAME>
+                                <ZIP>33615</ZIP>
+                                <CITY>Bielefeld</CITY>
+                                <COUNTRY_CODED>DE</COUNTRY_CODED>
+                                <COUNTRY>D</COUNTRY>
+                            </LOCATION>
                             <DURATION type="1" />
                             <FLEXIBLE_START>true</FLEXIBLE_START>
                             <EXTENDED_INFO>

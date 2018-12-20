@@ -1,486 +1,79 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<OPENQCAT version="0.9.2">
+<OPENQCAT version="1.1">
     <HEADER>
-        <GENERATOR_INFO></GENERATOR_INFO>
         <CATALOG>
             <LANGUAGE>0</LANGUAGE>
             <CATALOG_ID>CAT-0123456789</CATALOG_ID>
             <CATALOG_VERSION>0.0.12</CATALOG_VERSION>
-            <CATALOG_NAME></CATALOG_NAME>
-            <GENERATION_DATE>2012-12-13T12:12:12</GENERATION_DATE>
-            <TERRITORY></TERRITORY>
-            <CURRENCY>AED</CURRENCY>
-            <MIME_ROOT></MIME_ROOT>
         </CATALOG>
-        <DOCUMENT_CREATOR>
-            <CONTACT_ROLE type="1"></CONTACT_ROLE>
-            <SALUTATION></SALUTATION>
-            <ACADEMIC_TITLE></ACADEMIC_TITLE>
-            <FIRST_NAME></FIRST_NAME>
-            <LAST_NAME></LAST_NAME>
-            <NAME_PREFIX></NAME_PREFIX>
-            <JOB_TITLE></JOB_TITLE>
-            <PHONE>+49.521.1234567</PHONE>
-            <MOBILE></MOBILE>
-            <FAX></FAX>
-            <EMAILS>
-                <EMAIL></EMAIL>
-                <PUBLIC_KEY></PUBLIC_KEY>
-            </EMAILS>
-            <URL></URL>
-            <ID_DB></ID_DB>
-            <ADDRESS>
-                <NAME></NAME>
-                <NAME2></NAME2>
-                <NAME3></NAME3>
-                <STREET></STREET>
-                <ZIP></ZIP>
-                <BOXNO></BOXNO>
-                <ZIPBOX></ZIPBOX>
-                <CITY></CITY>
-                <DISTRICT></DISTRICT>
-                <STATE></STATE>
-                <COUNTRY_CODED>DE</COUNTRY_CODED>
-                <COUNTRY>D</COUNTRY>
-                <PHONE>+49.521.1234567</PHONE>
-                <MOBILE></MOBILE>
-                <FAX></FAX>
-                <EMAILS>
-                    <EMAIL></EMAIL>
-                    <PUBLIC_KEY></PUBLIC_KEY>
-                </EMAILS>
-                <URL></URL>
-                <ADDRESS_REMARKS></ADDRESS_REMARKS>
-                <ID_DB></ID_DB>
-            </ADDRESS>
-            <CONTACT_REMARKS></CONTACT_REMARKS>
-        </DOCUMENT_CREATOR>
-        <RECIPIENT>
-            <RECIPIENT_ID></RECIPIENT_ID>
-            <RECIPIENT_NAME></RECIPIENT_NAME>
-            <ADDRESS>
-                <NAME></NAME>
-                <NAME2></NAME2>
-                <NAME3></NAME3>
-                <STREET></STREET>
-                <ZIP></ZIP>
-                <BOXNO></BOXNO>
-                <ZIPBOX></ZIPBOX>
-                <CITY></CITY>
-                <DISTRICT></DISTRICT>
-                <STATE></STATE>
-                <COUNTRY_CODED>DE</COUNTRY_CODED>
-                <COUNTRY>D</COUNTRY>
-                <PHONE>+49.521.1234567</PHONE>
-                <MOBILE></MOBILE>
-                <FAX></FAX>
-                <EMAILS>
-                    <EMAIL></EMAIL>
-                    <PUBLIC_KEY></PUBLIC_KEY>
-                </EMAILS>
-                <URL></URL>
-                <ADDRESS_REMARKS></ADDRESS_REMARKS>
-                <ID_DB></ID_DB>
-            </ADDRESS>
-            <CONTACT>
-                <CONTACT_ROLE type="1"></CONTACT_ROLE>
-                <SALUTATION></SALUTATION>
-                <ACADEMIC_TITLE></ACADEMIC_TITLE>
-                <FIRST_NAME></FIRST_NAME>
-                <LAST_NAME></LAST_NAME>
-                <NAME_PREFIX></NAME_PREFIX>
-                <JOB_TITLE></JOB_TITLE>
-                <PHONE>+49.521.1234567</PHONE>
-                <MOBILE></MOBILE>
-                <FAX></FAX>
-                <EMAILS>
-                    <EMAIL></EMAIL>
-                    <PUBLIC_KEY></PUBLIC_KEY>
-                </EMAILS>
-                <URL></URL>
-                <ID_DB></ID_DB>
-                <ADDRESS>
-                    <NAME></NAME>
-                    <NAME2></NAME2>
-                    <NAME3></NAME3>
-                    <STREET></STREET>
-                    <ZIP></ZIP>
-                    <BOXNO></BOXNO>
-                    <ZIPBOX></ZIPBOX>
-                    <CITY></CITY>
-                    <DISTRICT></DISTRICT>
-                    <STATE></STATE>
-                    <COUNTRY_CODED>DE</COUNTRY_CODED>
-                    <COUNTRY>D</COUNTRY>
-                    <PHONE>+49.521.1234567</PHONE>
-                    <MOBILE></MOBILE>
-                    <FAX></FAX>
-                    <EMAILS>
-                        <EMAIL></EMAIL>
-                        <PUBLIC_KEY></PUBLIC_KEY>
-                    </EMAILS>
-                    <URL></URL>
-                    <ADDRESS_REMARKS></ADDRESS_REMARKS>
-                    <ID_DB></ID_DB>
-                </ADDRESS>
-                <CONTACT_REMARKS></CONTACT_REMARKS>
-            </CONTACT>
-        </RECIPIENT>
         <SUPPLIER>
             <SUPPLIER_ID type="duns"></SUPPLIER_ID>
             <SUPPLIER_NAME></SUPPLIER_NAME>
             <ADDRESS>
                 <NAME>Sabc Wdef</NAME>
-                <NAME2></NAME2>
-                <NAME3></NAME3>
-                <STREET></STREET>
                 <ZIP></ZIP>
-                <BOXNO></BOXNO>
-                <ZIPBOX></ZIPBOX>
                 <CITY></CITY>
-                <DISTRICT></DISTRICT>
-                <STATE></STATE>
-                <COUNTRY_CODED>DE</COUNTRY_CODED>
                 <COUNTRY>D</COUNTRY>
-                <PHONE>+49.521.1234567</PHONE>
-                <MOBILE></MOBILE>
-                <FAX></FAX>
-                <EMAILS>
-                    <EMAIL></EMAIL>
-                    <PUBLIC_KEY></PUBLIC_KEY>
-                </EMAILS>
-                <URL></URL>
-                <ADDRESS_REMARKS></ADDRESS_REMARKS>
-                <ID_DB></ID_DB>
             </ADDRESS>
             <CONTACT>
                 <CONTACT_ROLE type="1"></CONTACT_ROLE>
-                <SALUTATION></SALUTATION>
-                <ACADEMIC_TITLE></ACADEMIC_TITLE>
                 <FIRST_NAME></FIRST_NAME>
                 <LAST_NAME></LAST_NAME>
-                <NAME_PREFIX></NAME_PREFIX>
-                <JOB_TITLE></JOB_TITLE>
-                <PHONE>+49.521.1234567</PHONE>
-                <MOBILE></MOBILE>
-                <FAX></FAX>
-                <EMAILS>
-                    <EMAIL></EMAIL>
-                    <PUBLIC_KEY></PUBLIC_KEY>
-                </EMAILS>
-                <URL></URL>
-                <ID_DB></ID_DB>
-                <ADDRESS>
-                    <NAME></NAME>
-                    <NAME2></NAME2>
-                    <NAME3></NAME3>
-                    <STREET></STREET>
-                    <ZIP></ZIP>
-                    <BOXNO></BOXNO>
-                    <ZIPBOX></ZIPBOX>
-                    <CITY></CITY>
-                    <DISTRICT></DISTRICT>
-                    <STATE></STATE>
-                    <COUNTRY_CODED>DE</COUNTRY_CODED>
-                    <COUNTRY>D</COUNTRY>
-                    <PHONE>+49.521.1234567</PHONE>
-                    <MOBILE></MOBILE>
-                    <FAX></FAX>
-                    <EMAILS>
-                        <EMAIL></EMAIL>
-                        <PUBLIC_KEY></PUBLIC_KEY>
-                    </EMAILS>
-                    <URL></URL>
-                    <ADDRESS_REMARKS></ADDRESS_REMARKS>
-                    <ID_DB></ID_DB>
-                </ADDRESS>
-                <CONTACT_REMARKS></CONTACT_REMARKS>
             </CONTACT>
             <KEYWORD></KEYWORD>
-            <MIME_INFO>
-                <MIME_ELEMENT>
-                    <MIME_TYPE></MIME_TYPE>
-                    <MIME_SOURCE></MIME_SOURCE>
-                    <MIME_DESCR></MIME_DESCR>
-                    <MIME_ALT></MIME_ALT>
-                    <MIME_PURPOSE>data_sheet</MIME_PURPOSE>
-                    <MIME_ORDER>1234</MIME_ORDER>
-                </MIME_ELEMENT>
-            </MIME_INFO>
-            <CERTIFICATE>
-                <CERTIFICATE_STATUS>1234</CERTIFICATE_STATUS>
-                <CERTIFIER_NUMBER></CERTIFIER_NUMBER>
-                <CERTIFICATE_NUMBER></CERTIFICATE_NUMBER>
-                <CERT_VALIDITY>
-                    <START_DATE>2012-12-13</START_DATE>
-                    <END_DATE>2012-12-13</END_DATE>
-                    <DATE_REMARKS></DATE_REMARKS>
-                </CERT_VALIDITY>
-                <CERT_DESCRIPTION></CERT_DESCRIPTION>
-            </CERTIFICATE>
             <EXTENDED_INFO input_type="2">
                 <INSTITUTION_NUMBER></INSTITUTION_NUMBER>
-                <FUNDING_BODY>1234</FUNDING_BODY>
-                <ORGANIZATIONAL_FORM type="1"></ORGANIZATIONAL_FORM>
-                <STANDARD_COMPANY_NUMBER></STANDARD_COMPANY_NUMBER>
-                <CUSTOMER_NUMBER></CUSTOMER_NUMBER>
-                <BANKING>
-                    <ACCOUNT_NUMBER></ACCOUNT_NUMBER>
-                    <BANK_CODE></BANK_CODE>
-                </BANKING>
             </EXTENDED_INFO>
         </SUPPLIER>
-        <AGREEMENT>
-            <AGREEMENT_ID></AGREEMENT_ID>
-            <VALIDITY>
-                <START_DATE>2012-12-13T12:12:12</START_DATE>
-                <END_DATE>2012-12-13T12:12:12</END_DATE>
-                <DATE_REMARKS></DATE_REMARKS>
-            </VALIDITY>
-        </AGREEMENT>
     </HEADER>
     <NEW_CATALOG FULLCATALOG="true">
-        <CLASSIFICATION_SYSTEM>
-            <CLASSIFICATION_SYSTEM_NAME></CLASSIFICATION_SYSTEM_NAME>
-            <CLASSIFICATION_SYSTEM_FULLNAME></CLASSIFICATION_SYSTEM_FULLNAME>
-            <CLASSIFICATION_SYSTEM_VERSION></CLASSIFICATION_SYSTEM_VERSION>
-            <CLASSIFICATION_SYSTEM_DESCR></CLASSIFICATION_SYSTEM_DESCR>
-            <CLASSIFICATION_SYSTEM_LEVELS>1234</CLASSIFICATION_SYSTEM_LEVELS>
-            <CLASSIFICATION_SYSTEM_LEVEL_NAMES>
-                <CLASSIFICATION_SYSTEM_LEVEL_NAME></CLASSIFICATION_SYSTEM_LEVEL_NAME>
-            </CLASSIFICATION_SYSTEM_LEVEL_NAMES>
-            <ALLOWED_VALUES>
-                <ALLOWED_VALUE>
-                    <ALLOWED_VALUE_ID></ALLOWED_VALUE_ID>
-                    <ALLOWED_VALUE_NAME></ALLOWED_VALUE_NAME>
-                    <ALLOWED_VALUE_DESCR></ALLOWED_VALUE_DESCR>
-                </ALLOWED_VALUE>
-            </ALLOWED_VALUES>
-            <UNITS>
-                <UNIT system="str1234">
-                    <UNIT_ID></UNIT_ID>
-                    <UNIT_NAME></UNIT_NAME>
-                    <UNIT_DESCR></UNIT_DESCR>
-                </UNIT>
-            </UNITS>
-            <CLASSIFICATION_SYSTEM_FEATURE_TEMPLATES>
-                <CLASSIFICATION_SYSTEM_FEATURE_TEMPLATE>
-                    <FT_ID></FT_ID>
-                    <FT_NAME></FT_NAME>
-                    <FT_DESCR></FT_DESCR>
-                </CLASSIFICATION_SYSTEM_FEATURE_TEMPLATE>
-            </CLASSIFICATION_SYSTEM_FEATURE_TEMPLATES>
-            <CLASSIFICATION_GROUPS>
-                <CLASSIFICATION_GROUP type="node" level="str1234">
-                    <CLASSIFICATION_GROUP_ID></CLASSIFICATION_GROUP_ID>
-                    <CLASSIFICATION_GROUP_NAME></CLASSIFICATION_GROUP_NAME>
-                    <CLASSIFICATION_GROUP_DESCR></CLASSIFICATION_GROUP_DESCR>
-                    <CLASSIFICATION_GROUP_SYNONYMS>
-                        <SYNONYM></SYNONYM>
-                    </CLASSIFICATION_GROUP_SYNONYMS>
-                    <CLASSIFICATION_GROUP_FEATURE_TEMPLATES>
-                        <CLASSIFICATION_GROUP_FEATURE_TEMPLATE>
-                            <FT_IDREF></FT_IDREF>
-                            <FT_MANDATORY>true</FT_MANDATORY>
-                            <FT_DATATYPE></FT_DATATYPE>
-                            <FT_UNIT></FT_UNIT>
-                            <FT_ORDER>1234</FT_ORDER>
-                            <FT_ALLOWED_VALUES>
-                                <ALLOWED_VALUE_IDREF></ALLOWED_VALUE_IDREF>
-                            </FT_ALLOWED_VALUES>
-                        </CLASSIFICATION_GROUP_FEATURE_TEMPLATE>
-                    </CLASSIFICATION_GROUP_FEATURE_TEMPLATES>
-                    <CLASSIFICATION_GROUP_PARENT_ID></CLASSIFICATION_GROUP_PARENT_ID>
-                </CLASSIFICATION_GROUP>
-            </CLASSIFICATION_GROUPS>
-        </CLASSIFICATION_SYSTEM>
-        <CATALOG_GROUP_SYSTEM>
-            <GROUP_SYSTEM_ID></GROUP_SYSTEM_ID>
-            <GROUP_SYSTEM_NAME></GROUP_SYSTEM_NAME>
-            <CATALOG_STRUCTURE type="root">
-                <GROUP_ID></GROUP_ID>
-                <GROUP_NAME></GROUP_NAME>
-                <GROUP_DESCRIPTION></GROUP_DESCRIPTION>
-                <PARENT_ID></PARENT_ID>
-                <GROUP_ORDER>1234</GROUP_ORDER>
-                <MIME_INFO>
-                    <MIME_ELEMENT>
-                        <MIME_TYPE></MIME_TYPE>
-                        <MIME_SOURCE></MIME_SOURCE>
-                        <MIME_DESCR></MIME_DESCR>
-                        <MIME_ALT></MIME_ALT>
-                        <MIME_PURPOSE>data_sheet</MIME_PURPOSE>
-                        <MIME_ORDER>1234</MIME_ORDER>
-                    </MIME_ELEMENT>
-                </MIME_INFO>
-                <KEYWORD></KEYWORD>
-            </CATALOG_STRUCTURE>
-            <GROUP_SYSTEM_DESCRIPTION></GROUP_SYSTEM_DESCRIPTION>
-        </CATALOG_GROUP_SYSTEM>
         <SERVICE mode="new">
             <PRODUCT_ID>AKU-0123456</PRODUCT_ID>
             <COURSE_TYPE>1</COURSE_TYPE>
-            <SUPPLIER_ID_REF type="duns"></SUPPLIER_ID_REF>
             <SERVICE_DETAILS>
                 <TITLE>Abcdefg</TITLE>
-                <DESCRIPTION_LONG>cckoDU8n0f52iWYP0uufEmX/7rM53HHmzQVb54L2ScOnGOjbVUErKGx/HrtznDi4xcM=</DESCRIPTION_LONG>
-                <SERVICE_ORDER>1234</SERVICE_ORDER>
-                <SUPPLIER_ALT_PID></SUPPLIER_ALT_PID>
-                <RECIPIENT_PID></RECIPIENT_PID>
+                <DESCRIPTION_LONG>HxBFS9tBQUAhL5WGC2EtOCW+Lxpjr3Gz3tgUsmedLFeuTp8ZI41EHWq70x0d0Pqfie0=</DESCRIPTION_LONG>
                 <CONTACT>
                     <CONTACT_ROLE type="1"></CONTACT_ROLE>
-                    <SALUTATION></SALUTATION>
-                    <ACADEMIC_TITLE></ACADEMIC_TITLE>
-                    <FIRST_NAME></FIRST_NAME>
                     <LAST_NAME></LAST_NAME>
-                    <NAME_PREFIX></NAME_PREFIX>
-                    <JOB_TITLE></JOB_TITLE>
-                    <PHONE>+49.521.1234567</PHONE>
-                    <MOBILE></MOBILE>
-                    <FAX></FAX>
-                    <EMAILS>
-                        <EMAIL></EMAIL>
-                        <PUBLIC_KEY></PUBLIC_KEY>
-                    </EMAILS>
-                    <URL></URL>
-                    <ID_DB></ID_DB>
                     <ADDRESS>
                         <NAME></NAME>
-                        <NAME2></NAME2>
-                        <NAME3></NAME3>
-                        <STREET></STREET>
                         <ZIP></ZIP>
-                        <BOXNO></BOXNO>
-                        <ZIPBOX></ZIPBOX>
                         <CITY></CITY>
-                        <DISTRICT></DISTRICT>
-                        <STATE></STATE>
                         <COUNTRY_CODED>DE</COUNTRY_CODED>
                         <COUNTRY>D</COUNTRY>
-                        <PHONE>+49.521.1234567</PHONE>
-                        <MOBILE></MOBILE>
-                        <FAX></FAX>
                         <EMAILS>
                             <EMAIL></EMAIL>
-                            <PUBLIC_KEY></PUBLIC_KEY>
                         </EMAILS>
-                        <URL></URL>
-                        <ADDRESS_REMARKS></ADDRESS_REMARKS>
-                        <ID_DB></ID_DB>
                     </ADDRESS>
-                    <CONTACT_REMARKS></CONTACT_REMARKS>
                 </CONTACT>
-                <SERVICE_STATUS type="bargain"></SERVICE_STATUS>
-                <REQUIREMENTS></REQUIREMENTS>
                 <SERVICE_DATE>
                     <START_DATE>2012-12-13T12:12:12</START_DATE>
                     <END_DATE>2012-12-13T12:12:12</END_DATE>
-                    <DATE_REMARKS></DATE_REMARKS>
                 </SERVICE_DATE>
-                <KEYWORD></KEYWORD>
-                <SEGMENT></SEGMENT>
-                <TARGET_GROUP>
-                    <TARGET_GROUP_TEXT></TARGET_GROUP_TEXT>
-                    <TARGET_GROUP_HIERARCHY></TARGET_GROUP_HIERARCHY>
-                    <TARGET_GROUP_INDUSTRY type="WZ93" version="str1234">
-                        <INDUSTRY_GROUP_ID></INDUSTRY_GROUP_ID>
-                        <INDUSTRY_GROUP_NAME></INDUSTRY_GROUP_NAME>
-                    </TARGET_GROUP_INDUSTRY>
-                    <TARGET_GROUP_DEPARTMENT></TARGET_GROUP_DEPARTMENT>
-                </TARGET_GROUP>
-                <TIME_TO_HANDLE>12</TIME_TO_HANDLE>
-                <TERMS_AND_CONDITIONS></TERMS_AND_CONDITIONS>
-                
                 <SERVICE_MODULE><EDUCATION type="true">
-                        <COURSE_ID>AKU-0123456</COURSE_ID>
+                    <COURSE_ID>AKU-0123456</COURSE_ID>
+                    <EXTENDED_INFO>
+                        <INSTITUTION type="101"/>
+                        <INSTRUCTION_FORM type="1"/>
+                        <EDUCATION_TYPE type="100"/>
+                    </EXTENDED_INFO>
+                    <MODULE_COURSE>
+                        <LOCATION>
+                            <NAME>S1234567</NAME>
+                            <ZIP>33615</ZIP>
+                            <CITY>Bielefeld</CITY>
+                            <COUNTRY_CODED>DE</COUNTRY_CODED>
+                            <COUNTRY>D</COUNTRY>
+                        </LOCATION>
+                        <DURATION type="1"/>
+                        <FLEXIBLE_START>true</FLEXIBLE_START>
                         <EXTENDED_INFO>
-                            <INSTITUTION type="101"/>
-                            <INSTRUCTION_FORM type="1"/>
-                            <EDUCATION_TYPE type="100"/>
+                            <SEGMENT_TYPE type="1"/>
                         </EXTENDED_INFO>
-                        <MODULE_COURSE>
-                            <LOCATION>
-                                <NAME>S1234567</NAME>
-                                <ZIP>33615</ZIP>
-                                <CITY>Bielefeld</CITY>
-                                <COUNTRY_CODED>DE</COUNTRY_CODED>
-                                <COUNTRY>D</COUNTRY>
-                            </LOCATION>
-                            <DURATION type="1"/>
-                            <FLEXIBLE_START>true</FLEXIBLE_START>
-                            <EXTENDED_INFO>
-                                <SEGMENT_TYPE type="1"/>
-                            </EXTENDED_INFO>
-                        </MODULE_COURSE>
-                    </EDUCATION></SERVICE_MODULE>
-                <ANNOUNCEMENT>
-                    <START_DATE>2012-12-13</START_DATE>
-                    <END_DATE>2012-12-13</END_DATE>
-                    <DATE_REMARKS></DATE_REMARKS>
-                </ANNOUNCEMENT>
+                    </MODULE_COURSE>
+                </EDUCATION></SERVICE_MODULE>
             </SERVICE_DETAILS>
-            <SERVICE_CLASSIFICATION>
-                <REFERENCE_CLASSIFICATION_SYSTEM_NAME></REFERENCE_CLASSIFICATION_SYSTEM_NAME>
-                <REFERENCE_CLASSIFICATION_GROUP_ID></REFERENCE_CLASSIFICATION_GROUP_ID>
-                <FEATURE>
-                    <FNAME></FNAME>
-                    <VARIANTS>
-                        <VARIANT>
-                            <FVALUE></FVALUE>
-                            <PRODUCT_ID_SUPPLEMENT></PRODUCT_ID_SUPPLEMENT>
-                        </VARIANT>
-                        <VORDER>1234</VORDER>
-                    </VARIANTS>
-                    <FUNIT></FUNIT>
-                    <FORDER>1234</FORDER>
-                    <FDESCR></FDESCR>
-                    <FVALUE_DETAILS></FVALUE_DETAILS>
-                </FEATURE>
-            </SERVICE_CLASSIFICATION>
-            <SERVICE_PRICE_DETAILS>
-                <VALIDITY>
-                    <START_DATE>2012-12-13T12:12:12</START_DATE>
-                    <END_DATE>2012-12-13T12:12:12</END_DATE>
-                    <DATE_REMARKS></DATE_REMARKS>
-                </VALIDITY>
-                <DAILY_PRICE>true</DAILY_PRICE>
-                <SERVICE_PRICE type="net_customer">
-                    <PRICE_AMOUNT>3.14159</PRICE_AMOUNT>
-                    <PRICE_CURRENCY>AED</PRICE_CURRENCY>
-                    <TAX>3.14159</TAX>
-                    <PRICE_FACTOR>3.14159</PRICE_FACTOR>
-                    <LOWER_BOUND>3.14159</LOWER_BOUND>
-                    <TERRITORY></TERRITORY>
-                </SERVICE_PRICE>
-                <REMARKS></REMARKS>
-            </SERVICE_PRICE_DETAILS>
-            <HS_INFO>
-                <STUDICHECK_PROVIDED>true</STUDICHECK_PROVIDED>
-            </HS_INFO>
-            <MIME_INFO>
-                <MIME_ELEMENT>
-                    <MIME_TYPE></MIME_TYPE>
-                    <MIME_SOURCE></MIME_SOURCE>
-                    <MIME_DESCR></MIME_DESCR>
-                    <MIME_ALT></MIME_ALT>
-                    <MIME_PURPOSE>data_sheet</MIME_PURPOSE>
-                    <MIME_ORDER>1234</MIME_ORDER>
-                </MIME_ELEMENT>
-            </MIME_INFO>
-            <SERVICE_REFERENCE quantity="1234" type="sparepart">
-                <PRODUCT_ID_REF></PRODUCT_ID_REF>
-                <SUPPLIER_ID_REF type="duns"></SUPPLIER_ID_REF>
-                <CATALOG_ID_REF></CATALOG_ID_REF>
-                <CATALOG_VERSION_REF></CATALOG_VERSION_REF>
-                <REFERENCE_DESCRIPTION></REFERENCE_DESCRIPTION>
-            </SERVICE_REFERENCE>
         </SERVICE>
-        <SERVICE_TO_CATALOGGROUP_MAP>
-            <PROD_ID_REF></PROD_ID_REF>
-            <SUPPLIER_ID_REF type="duns"></SUPPLIER_ID_REF>
-            <CATALOG_GROUP_SYSTEM_ID_REF></CATALOG_GROUP_SYSTEM_ID_REF>
-            <CATALOG_GROUP_ID_REF></CATALOG_GROUP_ID_REF>
-            <SERVICE_TO_CATALOGGROUP_MAP_ORDER>1234</SERVICE_TO_CATALOGGROUP_MAP_ORDER>
-        </SERVICE_TO_CATALOGGROUP_MAP>
     </NEW_CATALOG>
 </OPENQCAT>
