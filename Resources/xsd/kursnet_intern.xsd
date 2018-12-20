@@ -1,0 +1,3997 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Name:                 openQ-cat_BA1.0.0.xsd
+  Version:              1.0.0 RC1
+  Datum:                16.03.2005
+  Authors:       	Sascha Rex, Fraunhofer IAO Stuttgart      
+			Alexander Hettrich, Fraunhofer IAO Stuttgart 
+			 
+			
+  Copyright 2001-2005 
+  Fraunhofer IAO Stuttgart
+  All Rights Reserved
+  
+  // Namespace = http://www.open-Q.org/catalog/openQ-cat.V1.00.dtd
+        
+  This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+        
+  PUBLIC "-//OPENQCAT//DTD OPENQCAT//EN"
+  SYSTEM "openQ-cat.V0.95.dtd"
+  
+  This SCHEMA module is identified by the PUBLIC and SYSTEM identifiers:
+        
+  PUBLIC "-//OPENQCAT//DTD OPENQCAT//EN"
+  SYSTEM "openQ-cat.V0.9.59.XSD"
+  
+Änderungshistorie:
+==============
+
+25.06.2018	SchneideK084	Element REGULAR_STUDY_PERIOD_TYPE hinzugefügt
+
+17.05.2018 	BHO 			Element TEACHING_QUALIFICATION (Leharmtsbefähigung) hinzugefügt
+
+20.04.2018  PleinesM001   	Element SUBJECT_AREA entfernt, Documentation angpasst
+
+12.04.2018  HoheiselJ   	Neues Element COURSE_TYPE hinzugefügt
+
+13.09.2017  SchneideK084  	Neues Element HS_INFO in SERVICE hinzugefügt
+
+17.02.2016  OettlJ  		Element CERTIFICATION: enumeration value 10, 11 ergänzt
+
+30.06.2015  OettlJ  		Element ADDRESS_REMARKS auf 4.000 Zeichen beschränkt
+
+25.06.2015  OettlJ  		Element SERVICE um Attribut rejected ergänzt
+
+17.03.2015  OettlJ  		Element CERTIFICATION: enumeration value 5, 6, 7, 8, 9 ergänzt
+
+03.12.2014  OettlJ  		Element CERTIFICATION: enumeration value 4 ergänzt
+
+26.09.2013 	WormT001 		HRK-RFC typeEDU_RESTRICTIONS erweitert
+							typeURL auf 255 Zeichen erweitert, 
+							typeCONTACT Attribut JOB_TITLE auf 255 Zeichen erweitert
+							Element STUDY_TYPE darf jetzt beliebig oft vorkommen
+
+10.04.2013	Kaleema			HRK-RFC: Neue Elemente hinzugefügt: 
+							FUNDING_BODY unter SUPPLIER.EXTENDED_INFO in Header
+							LECTURE_PERIOD, ADM_RESTRICTION, ADM_RESTRICTION_DESC, SEM_RESTRICTION unter
+							SERVICE_MODULE.EDUCATION.EXTENDED_INFO
+							STUDY_COURSE unter SERVICE.SERVICE_DETAILS
+							Neue Typen hinzugefügt:
+							typeSTUDY_COURSE, typeDEGREE_INFO, typeACCREDITATION, typeEDU_RESTRICTIONS, 
+							typeSPECIALIZATION  
+
+18.04.2013	Kaleema			Bei folgenden Elementen entfällt das Integer-Attribut, Value wird als Integer übertragen
+							HEADER.SUPPLIER.FUNDING_BODY
+							DEGREE_TYPE, UNIV_DEGREE,  und TEACHING_DEGREE in DEGREE_INFO
+							STUDY_COURSE.STUDY_TYPE
+							ACCREDITATION.TYPE
+							EDU_RESTRICTIONS.CONDITIONS_WO_SSC
+							ADM_RESTRICTION und SEM_RESTRICTION in SERVICE_MODULE  
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+	<xs:complexType name="ADDRESS_type">
+		<xs:sequence>
+			<xs:element ref="NAME"/>
+			<xs:element ref="NAME2" minOccurs="0"/>
+			<xs:element ref="NAME3" minOccurs="0"/>
+			<xs:element ref="STREET" minOccurs="0"/>
+			<xs:element ref="ZIP" minOccurs="0"/>
+			<xs:element ref="BOXNO" minOccurs="0"/>
+			<xs:element ref="ZIPBOX" minOccurs="0"/>
+			<xs:element ref="CITY" minOccurs="0"/>
+			<xs:element name="DISTRICT" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="36"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element ref="STATE" minOccurs="0"/>
+			<xs:element ref="COUNTRY" minOccurs="0"/>
+			<xs:element ref="PHONE" minOccurs="0"/>
+			<xs:element ref="MOBIL" minOccurs="0"/>
+			<xs:element ref="FAX" minOccurs="0"/>
+			<xs:element ref="EMAIL" minOccurs="0"/>
+			<xs:element ref="PUBLIC_KEY" minOccurs="0"/>
+			<xs:element ref="URL" minOccurs="0"/>
+			<xs:element ref="ADDRESS_REMARKS" minOccurs="0"/>
+			<xs:element name="ID_DB" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CONTACT_type">
+		<xs:sequence>
+			<xs:element name="SALUTATION" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TITLE" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FIRST_NAME" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LAST_NAME">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NAME_PREFIX" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="JOB_TITLE" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element ref="PHONE" minOccurs="0"/>
+			<xs:element ref="MOBIL" minOccurs="0"/>
+			<xs:element ref="FAX" minOccurs="0"/>
+			<xs:element ref="EMAIL" minOccurs="0"/>
+			<xs:element ref="URL" minOccurs="0"/>
+			<xs:element ref="ADDRESS_REMARKS" minOccurs="0"/>
+			<xs:element name="ID_DB" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element ref="ADDRESS" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:integer"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ADDRESS" type="ADDRESS_type"/>
+	<xs:element name="ADDRESS_REMARKS">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="AGREEMENT">
+		<xs:annotation>
+			<xs:documentation>Informationen zu den Rahmenverträgen, auf deren Basis das
+                Katalogdokument erstellt wird</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AGREEMENT_ID"/>
+				<xs:element name="VALID_FROM" type="xs:dateTime" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Datum, ab dem der Rahmenvertrag gültig
+                        ist</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="VALID_THROGH" type="xs:dateTime" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Datum bis zum dem der Rahmenvertrag gültig
+                        ist.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AGREEMENT_ID">
+		<xs:annotation>
+			<xs:documentation>Informationen zum anbietenden (katalogerzeugenden)
+            Unternehmen</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ALLOWED_VALUE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALLOWED_VALUE_ID"/>
+				<xs:element ref="ALLOWED_VALUE_NAME"/>
+				<xs:element ref="ALLOWED_VALUE_DESCR" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ALLOWED_VALUES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALLOWED_VALUE" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ALLOWED_VALUE_DESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ALLOWED_VALUE_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ALLOWED_VALUE_IDREF">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ALLOWED_VALUE_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="AUTHOR" type="ADDRESS_type"/>
+	<xs:element name="BOXNO">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="RECIPIENT">
+		<xs:annotation>
+			<xs:documentation>Informationen zum einkaufenden (katalogempfangenden) Unternehmen bzw.
+                zum Datenempfänger</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RECIPIENT_ID"/>
+				<xs:element ref="RECIPIENT_NAME"/>
+				<xs:element ref="ADDRESS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RECIPIENT_AID">
+		<xs:annotation>
+			<xs:documentation>Artikelnummer des Katalogempfängers</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="RECIPIENT_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="RECIPIENT_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CATALOG">
+		<xs:annotation>
+			<xs:documentation>Informationen zur Identifikation und Beschreibung des Produktkatalogs
+                und des Katalogdokuments sowie Bereiche zum Setzen von
+            Default-Werten</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LANGUAGE"/>
+				<xs:element ref="CATALOG_ID"/>
+				<xs:element ref="CATALOG_VERSION" minOccurs="0"/>
+				<xs:element ref="CATALOG_NAME" minOccurs="0"/>
+				<xs:element name="GENERATION_DATE" type="xs:dateTime" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Erstellungsdatum des Kataloges</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="TERRITORY" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="CURRENCY" minOccurs="0"/>
+				<xs:element ref="MIME_ROOT" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CATALOG_ID">
+		<xs:annotation>
+			<xs:documentation>ID des Kataloges. Wird vom Katalogerzeuger
+            vergeben.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CATALOG_NAME">
+		<xs:annotation>
+			<xs:documentation>Name des Kataloges</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CATALOG_VERSION">
+		<xs:annotation>
+			<xs:documentation>Versionsnummer des Kataloges.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CBT_CONTACT" type="ADDRESS_type">
+		<xs:annotation>
+			<xs:documentation>Kontakt für Fragen bzgl. des CBT.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CITY">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="36"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_GROUP_ID" minOccurs="0" maxOccurs="5"/>
+				<xs:element ref="CLASSIFICATION_GROUP_NAME"/>
+				<xs:element ref="CLASSIFICATION_GROUP_DESCR" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_GROUP_SYNONYMS" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_GROUP_FEATURE_TEMPLATES" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_GROUP_PARENT_ID" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="node"/>
+						<xs:enumeration value="leaf"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="level" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUPS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_GROUP" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP_DESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP_FEATURE_TEMPLATE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FT_IDREF"/>
+				<xs:element ref="FT_MANDATORY"/>
+				<xs:element ref="FT_DATATYPE"/>
+				<xs:element ref="FT_UNIT" minOccurs="0"/>
+				<xs:element ref="FT_ORDER" minOccurs="0"/>
+				<xs:element ref="FT_ALLOWED_VALUES" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP_FEATURE_TEMPLATES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_GROUP_FEATURE_TEMPLATE" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_GROUP_PARENT_ID" type="xs:string"/>
+	<xs:element name="CLASSIFICATION_GROUP_SYNONYMS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SYNONYM" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION">
+		<xs:annotation>
+			<xs:documentation>CLASSIFICATION bildet die Zuordnung zur Systematik
+            ab</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_SYSTEM_NAME"/>
+				<xs:element ref="CLASSIFICATION_GROUP_ID" maxOccurs="5"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM">
+		<xs:annotation>
+			<xs:documentation>Die Struktur CLASSIFICATION SYSTEM erlaubt es, mehrsprachige und
+                hierarchische Klassifikationssysteme inklusive Synonymen und komplexen
+                Merkmalsleisten mit Datentypen und Vorgabewerten zu übertragen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_SYSTEM_NAME"/>
+				<xs:element ref="CLASSIFICATION_SYSTEM_FULLNAME" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_SYSTEM_VERSION" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_SYSTEM_DESCR" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_SYSTEM_LEVELS" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_SYSTEM_LEVEL_NAMES" minOccurs="0"/>
+				<xs:element ref="ALLOWED_VALUES" minOccurs="0"/>
+				<xs:element ref="UNITS" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_SYSTEM_FEATURE_TEMPLATES" minOccurs="0"/>
+				<xs:element ref="CLASSIFICATION_GROUPS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_DESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_FEATURE_TEMPLATE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FT_ID"/>
+				<xs:element ref="FT_NAME"/>
+				<xs:element ref="FT_DESCR" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_FEATURE_TEMPLATES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_SYSTEM_FEATURE_TEMPLATE" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_FULLNAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_LEVELS" type="xs:integer"/>
+	<xs:element name="CLASSIFICATION_SYSTEM_LEVEL_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_LEVEL_NAMES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_SYSTEM_LEVEL_NAME" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CLASSIFICATION_SYSTEM_VERSION">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CONTACT" type="CONTACT_type"/>
+	<xs:simpleType name="CURRENCY_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AED"/>
+			<xs:enumeration value="AFN"/>
+			<xs:enumeration value="ALL"/>
+			<xs:enumeration value="AMD"/>
+			<xs:enumeration value="ANG"/>
+			<xs:enumeration value="AOA"/>
+			<xs:enumeration value="ARS"/>
+			<xs:enumeration value="AUD"/>
+			<xs:enumeration value="AWG"/>
+			<xs:enumeration value="AZN"/>
+			<xs:enumeration value="BAM"/>
+			<xs:enumeration value="BBD"/>
+			<xs:enumeration value="BDT"/>
+			<xs:enumeration value="BGN"/>
+			<xs:enumeration value="BHD"/>
+			<xs:enumeration value="BIF"/>
+			<xs:enumeration value="BMD"/>
+			<xs:enumeration value="BND"/>
+			<xs:enumeration value="BOB"/>
+			<xs:enumeration value="BOV"/>
+			<xs:enumeration value="BRL"/>
+			<xs:enumeration value="BSD"/>
+			<xs:enumeration value="BTN"/>
+			<xs:enumeration value="BWP"/>
+			<xs:enumeration value="BYR"/>
+			<xs:enumeration value="BZD"/>
+			<xs:enumeration value="CAD"/>
+			<xs:enumeration value="CDF"/>
+			<xs:enumeration value="CHE"/>
+			<xs:enumeration value="CHF"/>
+			<xs:enumeration value="CHW"/>
+			<xs:enumeration value="CLF"/>
+			<xs:enumeration value="CLP"/>
+			<xs:enumeration value="CNY"/>
+			<xs:enumeration value="COP"/>
+			<xs:enumeration value="COU"/>
+			<xs:enumeration value="CRC"/>
+			<xs:enumeration value="CSD"/>
+			<xs:enumeration value="CUP"/>
+			<xs:enumeration value="CVE"/>
+			<xs:enumeration value="CYP"/>
+			<xs:enumeration value="CZK"/>
+			<xs:enumeration value="DJF"/>
+			<xs:enumeration value="DKK"/>
+			<xs:enumeration value="DOP"/>
+			<xs:enumeration value="DZD"/>
+			<xs:enumeration value="EEK"/>
+			<xs:enumeration value="EGP"/>
+			<xs:enumeration value="ERN"/>
+			<xs:enumeration value="ETB"/>
+			<xs:enumeration value="EUR"/>
+			<xs:enumeration value="FJD"/>
+			<xs:enumeration value="FKP"/>
+			<xs:enumeration value="GBP"/>
+			<xs:enumeration value="GEL"/>
+			<xs:enumeration value="GHC"/>
+			<xs:enumeration value="GIP"/>
+			<xs:enumeration value="GMD"/>
+			<xs:enumeration value="GNF"/>
+			<xs:enumeration value="GTQ"/>
+			<xs:enumeration value="GWP"/>
+			<xs:enumeration value="GYD"/>
+			<xs:enumeration value="HKD"/>
+			<xs:enumeration value="HNL"/>
+			<xs:enumeration value="HRK"/>
+			<xs:enumeration value="HTG"/>
+			<xs:enumeration value="HUF"/>
+			<xs:enumeration value="IDR"/>
+			<xs:enumeration value="ILS"/>
+			<xs:enumeration value="INR"/>
+			<xs:enumeration value="IQD"/>
+			<xs:enumeration value="IRR"/>
+			<xs:enumeration value="ISK"/>
+			<xs:enumeration value="JMD"/>
+			<xs:enumeration value="JOD"/>
+			<xs:enumeration value="JPY"/>
+			<xs:enumeration value="KES"/>
+			<xs:enumeration value="KGS"/>
+			<xs:enumeration value="KHR"/>
+			<xs:enumeration value="KMF"/>
+			<xs:enumeration value="KPW"/>
+			<xs:enumeration value="KRW"/>
+			<xs:enumeration value="KWD"/>
+			<xs:enumeration value="KYD"/>
+			<xs:enumeration value="KZT"/>
+			<xs:enumeration value="LAK"/>
+			<xs:enumeration value="LBP"/>
+			<xs:enumeration value="LKR"/>
+			<xs:enumeration value="LRD"/>
+			<xs:enumeration value="LSL"/>
+			<xs:enumeration value="LTL"/>
+			<xs:enumeration value="LVL"/>
+			<xs:enumeration value="LYD"/>
+			<xs:enumeration value="MAD"/>
+			<xs:enumeration value="MDL"/>
+			<xs:enumeration value="MGA"/>
+			<xs:enumeration value="MKD"/>
+			<xs:enumeration value="MMK"/>
+			<xs:enumeration value="MNT"/>
+			<xs:enumeration value="MOP"/>
+			<xs:enumeration value="MRO"/>
+			<xs:enumeration value="MTL"/>
+			<xs:enumeration value="MUR"/>
+			<xs:enumeration value="MVR"/>
+			<xs:enumeration value="MWK"/>
+			<xs:enumeration value="MXN"/>
+			<xs:enumeration value="MXV"/>
+			<xs:enumeration value="MYR"/>
+			<xs:enumeration value="MZN"/>
+			<xs:enumeration value="NAD"/>
+			<xs:enumeration value="NGN"/>
+			<xs:enumeration value="NIO"/>
+			<xs:enumeration value="NOK"/>
+			<xs:enumeration value="NPR"/>
+			<xs:enumeration value="NZD"/>
+			<xs:enumeration value="OMR"/>
+			<xs:enumeration value="PAB"/>
+			<xs:enumeration value="PEN"/>
+			<xs:enumeration value="PGK"/>
+			<xs:enumeration value="PHP"/>
+			<xs:enumeration value="PKR"/>
+			<xs:enumeration value="PLN"/>
+			<xs:enumeration value="PYG"/>
+			<xs:enumeration value="QAR"/>
+			<xs:enumeration value="ROL"/>
+			<xs:enumeration value="RON"/>
+			<xs:enumeration value="RUB"/>
+			<xs:enumeration value="RWF"/>
+			<xs:enumeration value="SAR"/>
+			<xs:enumeration value="SBD"/>
+			<xs:enumeration value="SCR"/>
+			<xs:enumeration value="SDD"/>
+			<xs:enumeration value="SEK"/>
+			<xs:enumeration value="SGD"/>
+			<xs:enumeration value="SHP"/>
+			<xs:enumeration value="SIT"/>
+			<xs:enumeration value="SKK"/>
+			<xs:enumeration value="SLL"/>
+			<xs:enumeration value="SOS"/>
+			<xs:enumeration value="SRD"/>
+			<xs:enumeration value="STD"/>
+			<xs:enumeration value="SVC"/>
+			<xs:enumeration value="SYP"/>
+			<xs:enumeration value="SZL"/>
+			<xs:enumeration value="THB"/>
+			<xs:enumeration value="TJS"/>
+			<xs:enumeration value="TMM"/>
+			<xs:enumeration value="TND"/>
+			<xs:enumeration value="TOP"/>
+			<xs:enumeration value="TRY"/>
+			<xs:enumeration value="TTD"/>
+			<xs:enumeration value="TWD"/>
+			<xs:enumeration value="TZS"/>
+			<xs:enumeration value="UAH"/>
+			<xs:enumeration value="UGX"/>
+			<xs:enumeration value="USD"/>
+			<xs:enumeration value="USN"/>
+			<xs:enumeration value="USS"/>
+			<xs:enumeration value="UYU"/>
+			<xs:enumeration value="UZS"/>
+			<xs:enumeration value="VEB"/>
+			<xs:enumeration value="VND"/>
+			<xs:enumeration value="VUV"/>
+			<xs:enumeration value="WST"/>
+			<xs:enumeration value="XAF"/>
+			<xs:enumeration value="XAG"/>
+			<xs:enumeration value="XAU"/>
+			<xs:enumeration value="XCD"/>
+			<xs:enumeration value="XDR"/>
+			<xs:enumeration value="XOF"/>
+			<xs:enumeration value="XPD"/>
+			<xs:enumeration value="XPF"/>
+			<xs:enumeration value="XPT"/>
+			<xs:enumeration value="YER"/>
+			<xs:enumeration value="ZAR"/>
+			<xs:enumeration value="ZMK"/>
+			<xs:enumeration value="ZWN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="COUNTRY_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="ADN"/>
+			<xs:enumeration value="AFG"/>
+			<xs:enumeration value="AGO"/>
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="AND"/>
+			<xs:enumeration value="ANT"/>
+			<xs:enumeration value="ARM"/>
+			<xs:enumeration value="ASE"/>
+			<xs:enumeration value="AUS"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="BD"/>
+			<xs:enumeration value="BDS"/>
+			<xs:enumeration value="BG"/>
+			<xs:enumeration value="BH"/>
+			<xs:enumeration value="BHT"/>
+			<xs:enumeration value="BIO"/>
+			<xs:enumeration value="BOL"/>
+			<xs:enumeration value="BOS"/>
+			<xs:enumeration value="BR"/>
+			<xs:enumeration value="BRN"/>
+			<xs:enumeration value="BRU"/>
+			<xs:enumeration value="BS"/>
+			<xs:enumeration value="BUR"/>
+			<xs:enumeration value="BY"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="CAM"/>
+			<xs:enumeration value="CDN"/>
+			<xs:enumeration value="CH"/>
+			<xs:enumeration value="CHD"/>
+			<xs:enumeration value="CI"/>
+			<xs:enumeration value="CL"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="CV"/>
+			<xs:enumeration value="CY"/>
+			<xs:enumeration value="CZ"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="DJI"/>
+			<xs:enumeration value="DK"/>
+			<xs:enumeration value="DOM"/>
+			<xs:enumeration value="DY"/>
+			<xs:enumeration value="DZ"/>
+			<xs:enumeration value="E"/>
+			<xs:enumeration value="EAK"/>
+			<xs:enumeration value="EAT"/>
+			<xs:enumeration value="EAU"/>
+			<xs:enumeration value="EC"/>
+			<xs:enumeration value="EGU"/>
+			<xs:enumeration value="ERI"/>
+			<xs:enumeration value="ES"/>
+			<xs:enumeration value="ET"/>
+			<xs:enumeration value="ETH"/>
+			<xs:enumeration value="EW"/>
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="FIN"/>
+			<xs:enumeration value="FJI"/>
+			<xs:enumeration value="FL"/>
+			<xs:enumeration value="FSM"/>
+			<xs:enumeration value="GAB"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="GCA"/>
+			<xs:enumeration value="GEO"/>
+			<xs:enumeration value="GH"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="GUB"/>
+			<xs:enumeration value="GUY"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="HCA"/>
+			<xs:enumeration value="HR"/>
+			<xs:enumeration value="HV"/>
+			<xs:enumeration value="I"/>
+			<xs:enumeration value="IL"/>
+			<xs:enumeration value="IND"/>
+			<xs:enumeration value="IR"/>
+			<xs:enumeration value="IRL"/>
+			<xs:enumeration value="IRQ"/>
+			<xs:enumeration value="IS"/>
+			<xs:enumeration value="J"/>
+			<xs:enumeration value="JA"/>
+			<xs:enumeration value="JOR"/>
+			<xs:enumeration value="K"/>
+			<xs:enumeration value="KAS"/>
+			<xs:enumeration value="KIR"/>
+			<xs:enumeration value="KIS"/>
+			<xs:enumeration value="KOM"/>
+			<xs:enumeration value="KWT"/>
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="LAO"/>
+			<xs:enumeration value="LAR"/>
+			<xs:enumeration value="LB"/>
+			<xs:enumeration value="LS"/>
+			<xs:enumeration value="LT"/>
+			<xs:enumeration value="LV"/>
+			<xs:enumeration value="M"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="MAK"/>
+			<xs:enumeration value="MAL"/>
+			<xs:enumeration value="MAO"/>
+			<xs:enumeration value="MAR"/>
+			<xs:enumeration value="MC"/>
+			<xs:enumeration value="MEX"/>
+			<xs:enumeration value="MOL"/>
+			<xs:enumeration value="MON"/>
+			<xs:enumeration value="MOZ"/>
+			<xs:enumeration value="MS"/>
+			<xs:enumeration value="MW"/>
+			<xs:enumeration value="N"/>
+			<xs:enumeration value="NAU"/>
+			<xs:enumeration value="NEP"/>
+			<xs:enumeration value="NIC"/>
+			<xs:enumeration value="NL"/>
+			<xs:enumeration value="NZ"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="PE"/>
+			<xs:enumeration value="PK"/>
+			<xs:enumeration value="PL"/>
+			<xs:enumeration value="PNG"/>
+			<xs:enumeration value="PY"/>
+			<xs:enumeration value="QAT"/>
+			<xs:enumeration value="RA"/>
+			<xs:enumeration value="RB"/>
+			<xs:enumeration value="RC"/>
+			<xs:enumeration value="RCA"/>
+			<xs:enumeration value="RCB"/>
+			<xs:enumeration value="RCH"/>
+			<xs:enumeration value="RG"/>
+			<xs:enumeration value="RH"/>
+			<xs:enumeration value="RI"/>
+			<xs:enumeration value="RIM"/>
+			<xs:enumeration value="RL"/>
+			<xs:enumeration value="RM"/>
+			<xs:enumeration value="RMM"/>
+			<xs:enumeration value="RN"/>
+			<xs:enumeration value="RO"/>
+			<xs:enumeration value="ROK"/>
+			<xs:enumeration value="ROU"/>
+			<xs:enumeration value="RP"/>
+			<xs:enumeration value="RSM"/>
+			<xs:enumeration value="RU"/>
+			<xs:enumeration value="RUS"/>
+			<xs:enumeration value="RWA"/>
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="SAU"/>
+			<xs:enumeration value="SCN"/>
+			<xs:enumeration value="SD"/>
+			<xs:enumeration value="SGP"/>
+			<xs:enumeration value="SK"/>
+			<xs:enumeration value="SLO"/>
+			<xs:enumeration value="SME"/>
+			<xs:enumeration value="SN"/>
+			<xs:enumeration value="SOL"/>
+			<xs:enumeration value="SP"/>
+			<xs:enumeration value="STP"/>
+			<xs:enumeration value="SUD"/>
+			<xs:enumeration value="SWA"/>
+			<xs:enumeration value="SY"/>
+			<xs:enumeration value="SYR"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="TAD"/>
+			<xs:enumeration value="TG"/>
+			<xs:enumeration value="TJ"/>
+			<xs:enumeration value="TN"/>
+			<xs:enumeration value="TON"/>
+			<xs:enumeration value="TR"/>
+			<xs:enumeration value="TT"/>
+			<xs:enumeration value="TUR"/>
+			<xs:enumeration value="TUV"/>
+			<xs:enumeration value="UA"/>
+			<xs:enumeration value="UAE"/>
+			<xs:enumeration value="USA"/>
+			<xs:enumeration value="USB"/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="VAN"/>
+			<xs:enumeration value="VN"/>
+			<xs:enumeration value="VRK"/>
+			<xs:enumeration value="WAG"/>
+			<xs:enumeration value="WAL"/>
+			<xs:enumeration value="WAN"/>
+			<xs:enumeration value="WD"/>
+			<xs:enumeration value="WG"/>
+			<xs:enumeration value="WL"/>
+			<xs:enumeration value="WS"/>
+			<xs:enumeration value="WV"/>
+			<xs:enumeration value="YU"/>
+			<xs:enumeration value="YV"/>
+			<xs:enumeration value="Z"/>
+			<xs:enumeration value="ZA"/>
+			<xs:enumeration value="ZRE"/>
+			<xs:enumeration value="ZW"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="COUNTRY" type="COUNTRY_TYPE"/>
+	<xs:element name="CURRENCY" type="CURRENCY_TYPE">
+		<xs:annotation>
+			<xs:documentation>Währung die für den Katalog gültig ist.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DAILY_PRICE" type="xs:boolean"/>
+	<xs:element name="DATE" type="xs:date"/>
+	<xs:element name="DEGREE">
+		<xs:annotation>
+			<xs:documentation>Abschlusszertifikat / Zeugnis: Falls die Aus- und
+                Weiterbildungsmassnahme ein Anschlusszertifikat, eine Berechtigung oder ein
+                Abschlusszeugnis vorsieht, kann dieses in der Struktur DEGREE modelliert werden.
+                Attribut Type gibt die Art des Abschlusses/Berechtigung an.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DEGREE_TITLE" minOccurs="0"/>
+				<xs:element ref="DEGREE_EXAM" minOccurs="0"/>
+				<xs:element name="DEGREE_ADD_QUALIFICATION" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="DEGREE_ENTITLED" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="type" use="optional">
+				<xs:annotation>
+					<xs:documentation>Art des Abschlusses</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Öffentlich anerkannt"/>
+						<xs:enumeration value="Befähigungsnachweis"/>
+						<xs:enumeration value="Industriezertifikat"/>
+						<xs:enumeration value="Anbieterspezifisch"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DEGREE_EXAM">
+		<xs:annotation>
+			<xs:documentation>Abschlussprüfung</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EXAM_DESCRIPTION" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Beschreibung</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="64000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="LOCATION" minOccurs="0"/>
+				<xs:element ref="EXAM_DATE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="EXAM_LEGAL_BASIS" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Rechtsgrundlage</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="64000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Art der Abschlußprüfung</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DEGREE_TITLE">
+		<xs:annotation>
+			<xs:documentation>Bezeichnung/Beschreibung des Abschlusses</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TIME_TO_HANDLE" type="xs:unsignedShort">
+		<xs:annotation>
+			<xs:documentation>Zeit in Werktagen, die der Anbieter zur Bereitstellung der
+                Dienstleistung bzw. Lieferung des Produktes benötigt
+            (Vorlaufzeit)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DESCRIPTION_LONG">
+		<xs:annotation>
+			<xs:documentation>Langbeschreibung des Produktes; Formatierung mit
+            HTML-Tags</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30000"/>
+				<!--				
+<xs:minLength value="1"/>
+-->
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TITLE">
+		<xs:annotation>
+			<xs:documentation>Kurzbeschreibung</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="0"/>
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DURATION">
+		<xs:annotation>
+			<xs:documentation>Dauer der Maßnahme in Stunden, Tagen oder Einteilung in "Dauerklassen"
+                (type attribut)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EMAIL">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="END_DATE" type="xs:dateTime"/>
+	<xs:element name="EST_DURATION">
+		<xs:annotation>
+			<xs:documentation>Die geschätzte Bearbeitungsdauer in Zeiteinhalten. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:float">
+					<xs:attribute name="type" type="xs:string"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EXAM_DATE" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Mit EXAM_DATE kann das Datum bzw. die Dauer der Abschlussprüfung
+                übertragen werden. Sollte die Prüfung an mehreren Tagen stattfinden, so können
+                mehrere EXAM_DATE Elemente verwendet werden.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FAX">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+				<xs:pattern value="\+*[0-9]+\.[0-9]+\.{0,1}[0-9]*"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FDESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FEATURE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FNAME"/>
+				<xs:element ref="FUNIT" minOccurs="0"/>
+				<xs:element ref="FORDER" minOccurs="0"/>
+				<xs:element ref="FDESCR" minOccurs="0"/>
+				<xs:element ref="FVALUE_DETAILS" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FNAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FORDER" type="xs:integer"/>
+	<xs:element name="FT_ALLOWED_VALUES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALLOWED_VALUE_IDREF" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FT_DATATYPE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FT_DESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FT_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FT_IDREF">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FT_MANDATORY" type="xs:boolean"/>
+	<xs:element name="FT_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FT_ORDER" type="xs:integer"/>
+	<xs:element name="FT_UNIT">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FUNIT">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FVALUE_DETAILS">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="GENERATOR_INFO">
+		<xs:annotation>
+			<xs:documentation>An dieser Stelle kann das Softwarewerkzeug, das das Katalogdokument
+                erstellt, Informationen wie z.B. Werkzeugname, Erstellungsdatum, lfd. Nummer etc.
+            </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="HEADER">
+		<xs:annotation>
+			<xs:documentation>Der Kopfteil wird durch das Element HEADER spezifiziert. Im HEADER
+                werden allgemeine Informationen über das Katalogdokument hinterlegt und
+                Default-Werte gesetzt.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GENERATOR_INFO" minOccurs="0"/>
+				<xs:element ref="CATALOG"/>
+				<xs:element name="DOCUMENT_CREATOR" type="typeCONTACT" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Katalogerzeuger</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Informationen zum katalogerzeugenden Unternehmen</xs:documentation>
+						<xs:documentation source="title" xml:lang="de">In diesem Element werden Informationen zum katalogerzeugenden Unternehmen übertragen</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="RECIPIENT" minOccurs="0"/>
+				<xs:element ref="AGREEMENT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SUPPLIER"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INDUSTRY_GROUP_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="INDUSTRY_GROUP_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="INSTRUCTOR">
+		<xs:annotation>
+			<xs:documentation>Referent(en)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="INSTRUCTOR_SERVICETIME">
+		<xs:annotation>
+			<xs:documentation>Der Zeitraum innerhalb dessen ein Trainer für den WBT zur Verfügung
+                steht.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="START_DATE"/>
+				<xs:element ref="END_DATE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ISBN">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ISSN">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KEYWORD">
+		<xs:annotation>
+			<xs:documentation>Schlagwort, welches das Finden des Produktes bzw. Anbieters
+                erleichtert; das Produkt soll im Zielsystem auch über die Eingabe dieses
+                Schlagwortes gefunden werden können - Später Anzahl begrenzen!!</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LANGUAGE">
+		<xs:annotation>
+			<xs:documentation>Sprache des Kataloges</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LICENCE">
+		<xs:annotation>
+			<xs:documentation>Lizenzbedingungen für die Nutzung des CBTs.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LOCATION" type="ADDRESS_type">
+		<xs:annotation>
+			<xs:documentation>Ort der Veranstaltung</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LOWER_BOUND" type="xs:float"/>
+	<xs:element name="MANDATORY_LEARNINGTIME">
+		<xs:annotation>
+			<xs:documentation>Ein Zeitraum innerhalb dessen ein Lernender zwingend am WBT arbeiten
+                muss. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="START_DATE"/>
+				<xs:element ref="END_DATE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MARKETINGTEXT">
+		<xs:annotation>
+			<xs:documentation>Mit Hilfe von MARKETINGTEXT können Angaben zum Inhalt bzw. zum
+                Programm der Veranstaltung angegeben werden. Dies kann auch detaillierter über die
+                Verwendung von Modulen gemacht werden </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MAX_PARTICIPANTS" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Höchstzahl Teilnehmer, die eine Veranstaltung besuchen
+            können.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MEDIA">
+		<xs:annotation>
+			<xs:documentation>Die in der Weiterbildungsmaßnahme verwendeten Medien. Beispiel:
+                Übungsunterlagen, Filmvortrag</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="METHOD">
+		<xs:annotation>
+			<xs:documentation>Die in der Weiterbildungsmaßnahme angewandten Methoden können mittels
+                dieses Elementes übertragen werden. Beispiel: Gruppenarbeit, Rollenspiel,
+            Diskussion</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIMEElement">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MIME_TYPE" minOccurs="0"/>
+				<xs:element ref="MIME_SOURCE"/>
+				<xs:element ref="MIME_DESCR" minOccurs="0"/>
+				<xs:element ref="MIME_ALT" minOccurs="0"/>
+				<xs:element ref="MIME_PURPOSE" minOccurs="0"/>
+				<xs:element ref="MIME_ORDER" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MIME_ALT">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIME_DESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIME_INFO">
+		<xs:annotation>
+			<xs:documentation>Hier können multimediale Zusatzinformationen (z.B. Bilder) übertragen
+                werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MIMEElement" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MIME_ORDER" type="xs:integer"/>
+	<xs:element name="MIME_PURPOSE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIME_ROOT">
+		<xs:annotation>
+			<xs:documentation>Wurzelverzeichnis/URL in dem MIME Erweiterungen gesucht werden
+            sollen.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIME_SOURCE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIME_TYPE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MIN_PARTICIPANTS" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Mindestzahl Teilnehmer, die für eine Durchführung der Veranstaltung
+                nötig ist.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MODULE_CBT">
+		<xs:annotation>
+			<xs:documentation>Mit dieser Struktur können Informationen zu Computer-gestützten
+                Lernformen übertragen werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MARKETINGTEXT" minOccurs="0"/>
+				<xs:element ref="AUTHOR" minOccurs="0"/>
+				<xs:element ref="CBT_CONTACT" minOccurs="0"/>
+				<xs:element ref="LICENCE" minOccurs="0"/>
+				<xs:element ref="EST_DURATION" minOccurs="0"/>
+				<xs:element ref="ISBN" minOccurs="0"/>
+				<xs:element ref="ISSN" minOccurs="0"/>
+				<xs:element ref="TECH_REQUIREMENTS_MIN" minOccurs="0"/>
+				<xs:element ref="TECH_REQUIREMENTS_RECOMMENDED" minOccurs="0"/>
+				<xs:element ref="SERVICE_REFERENCE" minOccurs="0"/>
+				<xs:element ref="MODULE_ORDER" minOccurs="0"/>
+				<xs:element ref="METHOD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MEDIA" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MIME_INFO" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODULE_COURSE">
+		<xs:annotation>
+			<xs:documentation>Mit dieser Struktur können Informationen zu klassischen
+                Präsenzveranstaltungen übertragen werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MARKETINGTEXT" minOccurs="0"/>
+				<xs:element ref="INSTRUCTOR" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="LOCATION" type="ADDRESS_type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ort, an dem die Veranstaltung stattfindet. Wenn der
+                            Veranstaltungsort bei Katalogerstellung noch nicht feststeht, kann diese
+                            Angabe auch weggelassen werden.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="START_DATE" minOccurs="0"/>
+				<xs:element ref="END_DATE" minOccurs="0"/>
+				<xs:element ref="MODULE_ORDER" minOccurs="0"/>
+				<xs:element ref="METHOD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MEDIA" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MIME_INFO" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="segment_type" type="xs:integer"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODULE_ORDER" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Reihenfolge, in der die Module im Zielsystem dargestellt werden In
+                Listendarstellungen von Modulen werden die Module in aufsteigender Reihenfolge
+                dargestellt (erstes Modul entspricht niedrigster Zahl).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MODULE_ORGANIZER" type="ADDRESS_type">
+		<xs:annotation>
+			<xs:documentation>Organisator bzw. Durchführende Institution: Falls die ausführende bzw.
+                organisierende Institution vor der Katalogerzeugenden Organisation abweicht, können
+                diese Angaben durch die Struktur MODULE_ORGANIZIER übermittelt werden.
+            </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MODULE_WBT">
+		<xs:annotation>
+			<xs:documentation>Mit dieser Struktur kann eine Aus- und Weiterbildungsdienstleistung
+                von Typ „Web Based Training“ abgebildet werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MARKETINGTEXT" minOccurs="0"/>
+				<xs:element ref="AUTHOR" minOccurs="0"/>
+				<xs:element ref="WBT_CONTACT" minOccurs="0"/>
+				<xs:element ref="SERVICETIME" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="INSTRUCTOR_SERVICETIME" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MANDATORY_LEARNINGTIME" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="LICENCE" minOccurs="0"/>
+				<xs:element ref="EST_DURATION" minOccurs="0"/>
+				<xs:element ref="TECH_REQUIREMENTS_MIN" minOccurs="0"/>
+				<xs:element ref="TECH_REQUIREMENTS_RECOMMENDED" minOccurs="0"/>
+				<xs:element ref="SERVICE_REFERENCE" minOccurs="0"/>
+				<xs:element ref="MODULE_ORDER" minOccurs="0"/>
+				<xs:element ref="METHOD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MEDIA" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MIME_INFO" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NAME2">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NAME3">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NAME4">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="OPENQCAT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="HEADER"/>
+				<xs:element ref="NEW_CATALOG"/>
+				<xs:element ref="UPDATE_CATALOG" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" fixed="0.9.2"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PHONE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+				<xs:pattern value="\+*[0-9]+\.[0-9]+\.{0,1}[0-9]*"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MOBIL">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+				<xs:pattern value="\+*[0-9]+\.[0-9]+\.{0,1}[0-9]*"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PRICE_AMOUNT" type="xs:float"/>
+	<xs:element name="PRICE_CURRENCY" type="CURRENCY_TYPE"/>
+	<xs:element name="PRICE_FACTOR" type="xs:float"/>
+	<xs:element name="PUBLIC_KEY">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REFERENCE_DESCRIPTION">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REFERENCE_FEATURE_GROUP_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REFERENCE_FEATURE_GROUP_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REFERENCE_FEATURE_SYSTEM_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_CPU">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_GRAPHICSCARD">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_HARDDRIVE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_MEMORY">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_OPERATINGSYSTEM">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_OTHERHARDWARE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="REQ_OTHERSOFTWARE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SERVICE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PRODUCT_ID"/>
+				<xs:element ref="COURSE_TYPE"/>
+				<xs:element ref="CLASSIFICATION"/>
+				<xs:element ref="SERVICE_DETAILS"/>
+				<xs:element ref="SERVICE_MODULE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="HS_INFO" minOccurs="0"/>
+				<xs:element ref="MIME_INFO" minOccurs="0"/>
+				<xs:element ref="SERVICE_REFERENCE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SERVICE_FEATURES" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="mode" type="xs:string" fixed="new"/>
+			<xs:attribute name="rejected" type="xs:boolean" use="optional" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_MODULE">
+		<xs:annotation>
+			<xs:documentation>alle dienstleistungsspezifischen Informationen der Aus- und
+                Weiterbildungsdienstleistungen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="COURSE_ID" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nummer des Kurses bzw. Verweis auf den zugehörigen
+                        Kurs.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="INSTRUCTION_FORM" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>Unterrichtsform (z.B. Vollzeit, Teilzeit, Blockuntericht
+                            usw.)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="SERVICE_DATE" minOccurs="0"/>
+				<xs:element ref="DURATION" minOccurs="0"/>
+				<xs:element ref="LOCATION"/>
+				<xs:element ref="CONTACT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="REGISTRATION_DATE" type="xs:dateTime" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Spätest mögliches Anmeldedatum</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="INSTRUCTION_REMARKS" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bemerkung zu Unterrichtsform und
+                        -zeiten</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="MIN_PARTICIPANTS" minOccurs="0"/>
+				<xs:element ref="MAX_PARTICIPANTS" minOccurs="0"/>
+				<xs:element name="EXAMINER" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Prüfende Stelle</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="SERVICE_PRICE_DETAILS" minOccurs="0"/>
+				<xs:element name="TERMS_AND_CONDITIONS" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Allgemeine Regelungen, die für das Angebot
+                        gelten.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="8000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="MIME_INFO" minOccurs="0"/>
+				<xs:element name="GOV_METADATA" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Für BA notwendige Daten</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="MEASURE_NR" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Maßnahmenummer</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="ACCOUNT_NUMBER" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Kontonummer</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="15"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="BANK_CODE" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Bankleitzahl</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="CLEARANCE_DATE_FROM" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Freigabe des Angebotes am</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="CLEARANCE_DATE_THROUGH" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Freigabe des Angebotes bis</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FLEXIBLE_START" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Flag, ob flexible Teilnahme
+                                    möglich</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="COSTS" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CO_CATEGORY" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kostenkategorie</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CO_FIELD" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Berufsfeld</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CO_SUBSIDY" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Förderungsart</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CO_LOCATION" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Lernort</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CO_PLANNED_PARTICIPANTS" type="xs:integer" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Geplante
+                                                Teilnehmerzahl</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_HOURS_PRACTICAL" type="xs:integer" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>betriebliche
+                                                Stunden</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_HOURS_TRAINING_PRACTICAL" type="xs:integer" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Fachpraktische
+                                                Stunden</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_HOURS_ACADEMIC" type="xs:integer" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Theoretische
+                                                Stunden</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_TOTAL" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Gesamtkosten</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_ACCOMODATION" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten für
+                                                Unterbringung</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_CATERING" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten für
+                                                Verpflegung</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_PARTICIPANT_TOTAL" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten für den Teilnehmer -
+                                                Gesamt</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_PARTICIPANT_ACCOMODATION" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten für den Teilnehmer -
+                                                  Unterkunft</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_PARTICIPANT_CATERING" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten für den Teilnehmer -
+                                                  Verpflegung</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_MONTHLY_TOTAL" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monatliche
+                                                Gesamtkosten</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_MONTHLY_ACCOMODATION" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monatliche Kosten für
+                                                Unterkunft</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_MONTHLY_CATERING" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monatliche Kosten für
+                                                Verpflegung</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_HOURLY_TOTAL" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten pro
+                                                Stunde</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_HOURLY_ACCOMODATION" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Unterkunftskosten pro
+                                                Stunde</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_HOURLY_CATERING" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Verpflegungskosten pro
+                                                Stunde</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_ADD_DESC" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Zusatzkosten
+                                                (Bemerkung)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_ADD_CLOTHING" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kosten für
+                                                Arbeitskleidung</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_ADD_COURSE_FEE" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Lehrgangsgebühren</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_ADD_LEARN_AID" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Lernmittel</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_ADD_EXAM_FEE" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Prüfungsgebühren</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_MASTERPIECE" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Prüfungsstück</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_COST_OTHER" type="xs:float" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Zusatzkosten -
+                                                Sonstige</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_BANK_ACCOUNT" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kontonummer</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="15"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CO_BANK_CODE" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>BLZ</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CO_HOURS_FREE" type="xs:integer" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Kostenfreie
+                                                Stunden</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CO_HOURS_PAY" type="xs:integer" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>kostenpflichtige
+                                                Stunden</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CERTIFICATION" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Gibt an, ob das Angebot zertifiziert ist. 0 = nichts; 1 = Zulassung liegt vor; 2 = Zulassung beantragt; 4 = IQ-Förderung - Ausgleichsmaßnahmen für reglementierte Berufe (Modul 1); 5 = IQ-Förderung - Ausgleichsqualifizierungen für Ausbildungsberufe des dualen Systems (Modul 2); 6 = IQ-Förderung - Brückenmaßnahmen für akademische Berufe (Modul 3); 7 = IQ-Förderung - Vorbereitungsmaßnahmen auf die Externenprüfung (Modul 4); 8 = IQ-Förderung - Qualifizierungsmaßnahmen zum berufsbezogenen Sprachlernen; 9 = Sonstige Qualifizierungsmaßnahmen; 10 = Integrationskurse (BAMF-Förderung); 11 = berufsbezogene Sprachförderung (ESF-BAMF)</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:enumeration value="0"/>
+										<xs:enumeration value="1"/>
+										<xs:enumeration value="2"/>
+										<xs:enumeration value="3"/>
+										<xs:enumeration value="4"/>
+										<xs:enumeration value="5"/>
+										<xs:enumeration value="6"/>
+										<xs:enumeration value="7"/>
+										<xs:enumeration value="8"/>
+										<xs:enumeration value="9"/>
+										<xs:enumeration value="10"/>
+										<xs:enumeration value="11"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="SERVICE_REFERENCE" minOccurs="0"/>
+				<xs:element name="SUP_INTERN_ID" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Interne ID des Bildungsträgers der Dienstleistung ("Bestellnummer")</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="30"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="MODULE_ORGANIZER" minOccurs="0"/>
+				<xs:element name="LECTURE_PERIOD" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Vorlesungszeit</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Vorlesungszeit. Ergänzende Informationen zur Vorlesungszeit werden als Freitext übertragen.
+								</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ADM_RESTRICTION" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Zulassungsbeschränkungen
+								</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Zulassungsbeschränkungen. Die Zuordnung zu einer Zulassungsbeschränkung erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe einer Zulassungsbeschränkung mittels der zur Zulassungsbeschränkung gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.
+								</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ADM_RESTRICTION_DESC" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Weitere Informationen zum Zulassungsverfahren</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Weitere Informationen zum Zulassungsverfahren werden als Freitext übertragen.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SEM_RESTRICTION" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Zulassungssemester, Studienbeginn</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Zulassungssemester, Studienbeginn. Die Zuordnung zu einem Zulassungssemester erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe eines Zulassungssemesters mittels der zum Zulassungssemester gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="LANGUAGE" type="typeLANGUAGES" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Sprache</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Sprache, in der diese Bildungsmaßnahme angeboten wird. ISO 639-2:1998 Sprachcode [ISO-639-2:1998]</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="MODULE_COURSE"/>
+					<xs:element ref="MODULE_CBT"/>
+					<xs:element ref="MODULE_WBT"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HS_INFO">
+		<xs:annotation>
+			<xs:documentation source="description" xml:lang="de">Hochschulinformationen</xs:documentation>
+			<xs:documentation source="descr_short" xml:lang="de">Hier können Zusatzinformationen für Hochschulen (z.B. Flag für Studicheck) übertragen werden.</xs:documentation>
+			<xs:documentation source="title" xml:lang="de">Mit dem Datentyp typeHS_INFO können Zusatzinformationen für Hochschulen (z.B. Flag für Studicheck) spezifiziert werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="STUDICHECK_PROVIDED" type="xs:boolean" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Studiencheck hinterlegt</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Dieses Element gibt an, ob ein Studiencheck hinterlegt ist.</xs:documentation>
+						<xs:documentation source="title" xml:lang="de">Flag, ob Studiencheck hinterlegt</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICETIME">
+		<xs:annotation>
+			<xs:documentation>Der Zeitraum innerhalb dessen der WBT grundsätzlich abrufbar ist.
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="START_DATE"/>
+				<xs:element ref="END_DATE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_DATE">
+		<xs:annotation>
+			<xs:documentation>Zeitpunkt oder Zeitraum der Bereitstellung bzw. Durchführung der
+                Dienstleistung</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="START_DATE" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="END_DATE" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DATE_REMARKS" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_DETAILS">
+		<xs:annotation>
+			<xs:documentation>Detailbeschreibung des Angebotes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TITLE"/>
+				<xs:element name="INSTITUTION" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>Hier kann der Typ der Bildungseinrichtung angegeben werden
+                            ("Schulart").</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="EDUCATION_TYPE" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>Bildungsart (z.B. Fortbildung, Studiengang
+                        usw.)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="DEGREE" minOccurs="0"/>
+				<xs:element ref="DESCRIPTION_LONG" minOccurs="1"/>
+				<xs:element name="STUDY_COURSE" type="typeSTUDY_COURSE" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Aus- und Weiterbildungsdienstleistungen von Hochschulen</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">In STUDY_COURSE werden die sämtlichen hochschulstudiumsspezifischen Informationen abgelegt.
+					</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="REQUIREMENTS" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nötige Voraussetzungen</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="REQ_DESCRIPTION" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Freitext</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="10000"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CREDITS" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Angerechnete Vorleistungen</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="TARGET_GROUP" minOccurs="0"/>
+				<xs:element ref="KEYWORD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="CERTIFICATE" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Angaben zur Zertifizierung</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CERTIFIER_NR" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Nummer des Zertifizierers</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="CERTIFICATE_NR" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Nummer des Zertifikates</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="255"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="CERTIFICATE_STATUS" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Status des Zertifikates</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="VALID_FROM" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Gültig von</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="VALID_THROUGH" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Gültig bis</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="REMARKS" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Bemerkungen</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="64000"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SUBSIDY" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Fördermöglichkeiten</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SUBSIDY_DESCRIPTION" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="64000"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="HANDICAP" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Behinderungen</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="HAND_TYPE" type="xs:integer" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Art der Behinderung</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="HAND_NAME" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Name der Behinderung</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="255"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="HAND_DESCRIPTION" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Beschreibung</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="64000"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="ORDER" type="xs:integer" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Sortierreihenfolge</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="HAND_CATEGORY" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Behinderungsklasse</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="SERVICE_ORDER" minOccurs="0"/>
+				<xs:element ref="PRODUCT_ALT_ID" minOccurs="0"/>
+				<xs:element ref="RECIPIENT_AID" minOccurs="0"/>
+				<xs:element ref="SERVICE_STATUS" minOccurs="0"/>
+				<xs:element ref="TIME_TO_HANDLE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_FEATURES">
+		<xs:annotation>
+			<xs:documentation>In diesem Element kann der Artikel klassifiziert und mit Merkmalen
+                beschrieben werden und/oder die Artikelvarianten angegeben werden.
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="REFERENCE_FEATURE_SYSTEM_NAME" minOccurs="0"/>
+				<xs:choice minOccurs="0">
+					<xs:element ref="REFERENCE_FEATURE_GROUP_ID"/>
+					<xs:element ref="REFERENCE_FEATURE_GROUP_NAME"/>
+				</xs:choice>
+				<xs:element ref="FEATURE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_ID_TO">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SERVICE_ORDER" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Reihenfolge, in der Produkte im Zielsystem dargestellt
+            werden</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SERVICE_PRICE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PRICE_AMOUNT"/>
+				<xs:element ref="PRICE_CURRENCY" minOccurs="0"/>
+				<xs:element ref="TAX" minOccurs="0"/>
+				<xs:element ref="PRICE_FACTOR" minOccurs="0"/>
+				<xs:element ref="LOWER_BOUND" minOccurs="0"/>
+				<xs:element ref="TERRITORY" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="price_type" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_PRICE_DETAILS">
+		<xs:annotation>
+			<xs:documentation>Mit dem Element SERVICE_PRICE_DETAILS werden Preisdaten eines Artikels
+                spezifiziert.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VALID_FROM" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Zeitpunkt ab dem der Preis gilt.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DATE"/>
+							<xs:element ref="TIME" minOccurs="0"/>
+							<xs:element ref="TIMEZONE" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="DAILY_PRICE" minOccurs="0"/>
+				<xs:element ref="SERVICE_PRICE" minOccurs="0"/>
+				<xs:element name="REMARKS" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bemerkung zu den Preisen</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_REFERENCE">
+		<xs:annotation>
+			<xs:documentation>Über die Produktstrukturen ist es möglich, auf andere Module und/oder
+                Dienstleistungen zu verweisen. Diese Verweise haben dabei eine feste Bedeutung, sie
+                legen also fest, in welcher Beziehung die beiden Produkte zueinander stehen. Ein
+                solcher Verweis kann z.B. von einem Weiterbildungsangebot auf ein anderes
+                Weiterbildungsangebot verweisen, dessen Inhalte als Voraussetzungen
+            dienen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SERVICE_ID_TO"/>
+				<xs:element ref="CATALOG_ID" minOccurs="0"/>
+				<xs:element ref="CATALOG_VERSION" minOccurs="0"/>
+				<xs:element ref="REFERENCE_DESCRIPTION" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:annotation>
+					<xs:documentation>Die Verweisart beschreibt, in welcher Beziehung die beiden
+                        Produkte zueinander stehen (z.B. Artikel zu Ersatzteil). </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="sparepart"/>
+						<xs:pattern value="similar"/>
+						<xs:pattern value="followup"/>
+						<xs:pattern value="mandatory"/>
+						<xs:pattern value="select"/>
+						<xs:pattern value="accessories"/>
+						<xs:pattern value="consists_of"/>
+						<xs:pattern value="constitutive"/>
+						<xs:pattern value="predecessor"/>
+						<xs:pattern value="others"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SERVICE_STATUS">
+		<xs:annotation>
+			<xs:documentation>Die Art des Status wird im Attribut "type" spezifiziert. Der Wert des
+                Elements nimmt die textuelle Beschreibung des Status auf. Es ist so möglich, eine
+                Dienstleistung beispielsweise als Sonderangebot oder als neues Produkt zu
+                kennzeichnen und zu kommentieren.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="START_DATE" type="xs:dateTime"/>
+	<xs:element name="STATE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="80"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="STREET">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SUPPLIER">
+		<xs:annotation>
+			<xs:documentation>Informationen zum anbietenden (katalogerzeugenden)
+            Unternehmen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SUPPLIER_ID" maxOccurs="unbounded"/>
+				<xs:element name="EXT_ID" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>ID des Bildungsanbieters (Fremdsystem)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="SUPPLIER_NAME"/>
+				<xs:element ref="ADDRESS"/>
+				<xs:element name="CONTACT" type="CONTACT_type" maxOccurs="unbounded"/>
+				<xs:element name="INSTITUTION_NR" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Trägernummer</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="8"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FUNDING_BODY" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Trägerschaft der Hochschule</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Trägerschaft der Hochschule. Die Zuordnung zu einer Trägerschaft der Hochschule erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe einer Trägerschaft mittels der zur Trägerschaft gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ORGANIZATIONAL_FORM" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Organisationsform</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="STANDARD_COMPANY_NUMBER" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Betriebsnummer</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="8"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="CUSTOMER_NUMBER" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Kundennummer (Zebra)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ACCOUNT_NUMBER" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Kontonummer</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="15"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="BANK_CODE" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bankleitzahl</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="KEYWORD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MIME_INFO" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="input" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PRODUCT_ID">
+		<xs:annotation>
+			<xs:documentation>eindeutige Artikelnummer des Anbieters</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="COURSE_TYPE">
+		<xs:annotation>
+			<xs:documentation>Angebotstyp des Kurses</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:enumeration value="1">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Bildungsangebot</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Bildungsangebot</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="2">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Studienangebot</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Studienangebot</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="3">
+					<xs:annotation>
+						<xs:documentation source="description" xml:lang="de">Maßnahmeangebot AVGS</xs:documentation>
+						<xs:documentation source="descr_short" xml:lang="de">Maßnahmeangebot AVGS</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PRODUCT_ALT_ID">
+		<xs:annotation>
+			<xs:documentation>Alternative Artikelnummer</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SUPPLIER_ID">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type" use="optional" default="company_number">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="duns"/>
+								<xs:enumeration value="iln"/>
+								<xs:enumeration value="buyer_specific"/>
+								<xs:enumeration value="supplier_specific"/>
+								<xs:enumeration value="company_number"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SUPPLIER_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SYNONYM">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TARGET_GROUP">
+		<xs:annotation>
+			<xs:documentation>TARGET_GROUP definiert eine Zielgruppe, an die sich die angebotene
+                Dienstleistung richtet.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TARGET_GROUP_TEXT" minOccurs="0"/>
+				<xs:element ref="TARGET_GROUP_HIERARCHY" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="TARGET_GROUP_INDUSTRY" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="TARGET_GROUP_DEPARTMENT" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TARGET_GROUP_DEPARTMENT">
+		<xs:annotation>
+			<xs:documentation>Mit diesem Element kann die Zielgruppe über die Abteilung bzw. den
+                Fachbereich spezifiziert werden.</xs:documentation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TARGET_GROUP_HIERARCHY">
+		<xs:annotation>
+			<xs:documentation>Mit diesem Element kann die Zielgruppe über die Hierarchieebene
+                spezifiziert werden.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TARGET_GROUP_INDUSTRY">
+		<xs:annotation>
+			<xs:documentation>Mit diesem Element kann die Zielgruppe über die Branche spezifiziert
+                werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INDUSTRY_GROUP_ID" minOccurs="0"/>
+				<xs:element ref="INDUSTRY_GROUP_NAME" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+						<xs:enumeration value="WZ93"/>
+						<xs:enumeration value="NACE"/>
+						<xs:enumeration value="ISIC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+		<!--			<xs:attribute name="type" type="xs:string" use="required"> -->
+	</xs:element>
+	<xs:element name="TARGET_GROUP_TEXT">
+		<xs:annotation>
+			<xs:documentation>In diesem Element kann die Zielgruppe für eine Veranstaltung als
+                Freitext übermittelt werden.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="64000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TAX" type="xs:float"/>
+	<xs:element name="TECH_REQUIREMENTS_MIN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="REQ_CPU" minOccurs="0"/>
+				<xs:element ref="REQ_MEMORY" minOccurs="0"/>
+				<xs:element ref="REQ_HARDDRIVE" minOccurs="0"/>
+				<xs:element ref="REQ_GRAPHICSCARD" minOccurs="0"/>
+				<xs:element ref="REQ_OPERATINGSYSTEM" minOccurs="0"/>
+				<xs:element ref="REQ_OTHERSOFTWARE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="REQ_OTHERHARDWARE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TECH_REQUIREMENTS_RECOMMENDED">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="REQ_CPU" minOccurs="0"/>
+				<xs:element ref="REQ_MEMORY" minOccurs="0"/>
+				<xs:element ref="REQ_HARDDRIVE" minOccurs="0"/>
+				<xs:element ref="REQ_GRAPHICSCARD" minOccurs="0"/>
+				<xs:element ref="REQ_OPERATINGSYSTEM" minOccurs="0"/>
+				<xs:element ref="REQ_OTHERSOFTWARE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="REQ_OTHERHARDWARE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TERRITORY">
+		<xs:annotation>
+			<xs:documentation>Regionale Gültigkeiten</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TIME" type="xs:time"/>
+	<xs:element name="TIMEZONE" type="xs:string"/>
+	<!-- risk -->
+	<xs:element name="UPDATE_CATALOG">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DELETE" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SERVICE" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PRODUCT_ID">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="255"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NEW" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- risk -->
+	<xs:element name="NEW_CATALOG">
+		<xs:annotation>
+			<xs:documentation>Die Struktur NEW_CATALOG enthält die
+            Dienstleistungsinformationen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLASSIFICATION_SYSTEM" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="FULLCATALOG" type="xs:boolean" use="optional" default="1"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UNIT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UNIT_ID"/>
+				<xs:element ref="UNIT_NAME" minOccurs="0"/>
+				<xs:element ref="UNIT_DESCR" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="system" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UNITS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UNIT" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UNIT_DESCR">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="UNIT_ID">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="UNIT_NAME">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="URL">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="WBT_CONTACT" type="ADDRESS_type"/>
+	<xs:element name="ZIP">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="15"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ZIPBOX">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="15"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<!-- aus openQ-cat -->
+	<xs:complexType name="typeCONTACT">
+		<xs:annotation>
+			<xs:documentation source="description" xml:lang="de">Kontaktinformationen</xs:documentation>
+			<xs:documentation source="descr_short" xml:lang="de">Kontaktinformationen</xs:documentation>
+			<xs:documentation source="title" xml:lang="de">Kontaktinformationen</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CONTACT_ROLE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Rolle des Kontaktes</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Hier kann die Funktion des Ansprechpartners präzisiert werden. Über das Attribut type erfolgt die Zuordnung zu einer Rollenklasse: 1: Ansprechpartner, 2: Gesamtansprechpartner, 3: Leiter des Betriebs, 4: Berater, 5: Sonstige</xs:documentation>
+					<xs:documentation source="title" xml:lang="de">Hier kann die Funktion des Ansprechpartners präzisiert werden.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="type" use="required">
+								<xs:annotation>
+									<xs:documentation source="description" xml:lang="de">Rolle des Ansprechpartners</xs:documentation>
+									<xs:documentation source="descr_short" xml:lang="de">Zuordnung des Ansprechpartners zu einer Rollenklasse. Es sind folgende Werte möglich: 1: Ansprechpartner, 2: Gesamtansprechpartner, 3: Leiter des Betriebs, 4: Berater, 5: Sonstige</xs:documentation>
+									<xs:documentation source="title" xml:lang="de">Zuordnung des Ansprechpartners zu einer Rollenklasse.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SALUTATION" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Anrede</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Anrede, z.B. Herr, Frau</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ACADEMIC_TITLE" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Titel</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Titel, z.B. Dr</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FIRST_NAME" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Vorname</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Vorname</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LAST_NAME" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Nachname</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Nachname</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NAME_PREFIX" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Namensvorsatz</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Namensvorsatz. Beispiel: Otto <i>Graf</i> Lambsdorff</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="JOB_TITLE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Aufgabenbereich</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Aufgabenbereich dieses Kontaktes innerhalb des Unternehmens.<br/>Leiter Einkauf</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PHONE" type="typePHONE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Telefonnummer</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Telefonnummer. Es wird dringend empfohlen, für Telefon- und Faxnummern eine gängige internationale Notation zu nutzen: Beispiel: +49 1234/567890</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MOBILE" type="typePHONE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Handynummer</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Handynummer. Es wird dringend empfohlen, für Telefon- und Faxnummern eine gängige internationale Notation zu nutzen: Beispiel: +49 1234/567890</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAX" type="typePHONE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Faxnummer</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Faxnummer. Es wird dringend empfohlen, für Telefon- und Faxnummern eine gängige internationale Notation zu nutzen: Beispiel: +49 1234/567890</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMAILS" type="typeEMAILS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">E-Mail-Adressen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">In diesem Element können beliebig viele E-Mail-Adressen und ggf. Public Keys abgebildet werden.</xs:documentation>
+					<xs:documentation source="title" xml:lang="de">E-Mail-Adressen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URL" type="typeURL" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">URL</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Unified Resource Locator. Hiermit kann beispielsweise auf eine Website verwiesen werden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ID_DB" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Datenbankreferenz</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Falls auf eine bereits vorhandene Adresse in einer Datenbank verwiesen werden soll, kann dieses Element zur Übertragung des Primärschlüssels genutzt werden.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ADDRESS" type="typeADDRESS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Adresse</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Adressinformationen zu diesem Kontakt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONTACT_REMARKS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Bemerkungen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Dieses Feld kann für freie Anmerkungen zu dieser Kontaktperson genutzt werden.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="64000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeADDRESS">
+		<xs:annotation>
+			<xs:documentation source="description" xml:lang="de">Adressinformationen</xs:documentation>
+			<xs:documentation source="descr_short" xml:lang="de">Adressinformationen</xs:documentation>
+			<xs:documentation source="title" xml:lang="de">Dieses Element dient zur Übertragung von Adressinformationen</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NAME" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">1. Adresszeile</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">1. Adresszeile</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NAME2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">2. Adresszeile</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">2. Adresszeile, z.B. für eine bestimmte Abteilung</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NAME3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">3. Adresszeile</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">3. Adresszeile</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="STREET" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Straße</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Straße und Hausnummer</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ZIP" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">PLZ</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Postleitzahl der Hausanschrift</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="14"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="BOXNO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Postfach</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Postfach</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="14"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ZIPBOX" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">PLZ des Postfachs</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Postleitzahl des Postfachs</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="14"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CITY" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Ort</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Ort</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="36"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DISTRICT" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Bezirk</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Bezirk</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="36"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="STATE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Bundesland</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Bundesland</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="COUNTRY_CODED" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Ländercodes</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Ländercodes nach ISO 3166</xs:documentation>
+					<xs:documentation source="title" xml:lang="de">Enthält Ländercodes nach ISO 3166 </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="typeCOUNTRIES">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="COUNTRY" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Land</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Land</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PHONE" type="typePHONE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Telefonnummer</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Telefonnummer. Es wird dringend empfohlen, für Telefon- und Faxnummern eine gängige internationale Notation zu nutzen: Beispiel: +49 1234/567890</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MOBILE" type="typePHONE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Handynummer</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Telefonnummer. Es wird dringend empfohlen, für Telefon- und Faxnummern eine gängige internationale Notation zu nutzen: Beispiel: +49 1234/567890</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAX" type="typePHONE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Faxnummer</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Faxnummer. Es wird dringend empfohlen, für Telefon- und Faxnummern eine gängige internationale Notation zu nutzen: Beispiel: +49 1234/567890</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMAILS" type="typeEMAILS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">E-Mail-Adressen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">In diesem Element können beliebig viele E-Mail-Adressen und ggf. Public Keys abgebildet werden.</xs:documentation>
+					<xs:documentation source="title" xml:lang="de">E-Mail-Adressen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URL" type="typeURL" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">URL</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Unified Resource Locator. Hiermit kann beispielsweise auf eine Website verwiesen werden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ADDRESS_REMARKS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Bemerkungen zu dieser Adresse</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Bemerkungen zu dieser Adresse</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="4000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ID_DB" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Datenbankreferenz</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Falls auf eine bereits vorhandene Adresse in einer Datenbank verwiesen werden soll, kann dieses Element zur Übertragung des Primärschlüssels genutzt werden.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="typePHONE">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeURL">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="typeEMAILS">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="EMAIL">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">E-Mail-Adresse</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">E-Mail-Adresse (im format benutzername@domain.topleveldomain</xs:documentation>
+					<xs:documentation source="title" xml:lang="de">E-Mail-Adresse</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PUBLIC_KEY" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Public Key</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Gibt den Public Key (öffentlichen Schlüssel) zu dieser E-Mail-Adresse an.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="64000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="typeCOUNTRIES">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(AD|AE|AF|AG|AI|AL|AM|AN|AO|AQ|AR|AS|AT|AU|AW|AZ|BA|BB|BD|BE|BF|BG|BH|BI|BJ|BM|BN|BO|BR|BS|BT|BV|BW|BY|BZ|CA|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|CR|CU|CV|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EE|EG|EH|ER|ES|ET|FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GH|GI|GL|GM|GN|GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL|IN|IO|IQ|IR|IS|IT|JM|JO|JP|KE|KG|KH|KI|KM|KN|KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA|MC|MD|MG|MK|ML|MM|MN|MO|MP|MQ|MR|MS|MT|MU|MV|MW|MX|MY|MZ|NA|NC|NE|NF|NG|NI|NL|NO|NP|NR|NU|NZ|OM|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PS|PT|PW|PY|QA|RE|RO|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SR|ST|SV|SY|SZ|TC|TD|TF|TG|TH|TJ|TK|TM|TN|TO|TP|TR|TT|TV|TW|TZ|UA|UG|US|UY|UZ|VA|VC|VE|VG|VI|VN|VU|WF|WS|YE|YT|YU|ZA|ZM|ZW){1,1}(-[A-Z|0-9]{1,3}){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeLANGUAGES">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="aar"/>
+			<xs:enumeration value="abk"/>
+			<xs:enumeration value="ace"/>
+			<xs:enumeration value="ach"/>
+			<xs:enumeration value="ada"/>
+			<xs:enumeration value="afa"/>
+			<xs:enumeration value="afh"/>
+			<xs:enumeration value="afr"/>
+			<xs:enumeration value="aka"/>
+			<xs:enumeration value="akk"/>
+			<xs:enumeration value="alb"/>
+			<xs:enumeration value="ale"/>
+			<xs:enumeration value="alg"/>
+			<xs:enumeration value="amh"/>
+			<xs:enumeration value="ang"/>
+			<xs:enumeration value="apa"/>
+			<xs:enumeration value="ara"/>
+			<xs:enumeration value="arc"/>
+			<xs:enumeration value="arm"/>
+			<xs:enumeration value="arn"/>
+			<xs:enumeration value="arp"/>
+			<xs:enumeration value="art"/>
+			<xs:enumeration value="arw"/>
+			<xs:enumeration value="asm"/>
+			<xs:enumeration value="ath"/>
+			<xs:enumeration value="aus"/>
+			<xs:enumeration value="ava"/>
+			<xs:enumeration value="ave"/>
+			<xs:enumeration value="awa"/>
+			<xs:enumeration value="aym"/>
+			<xs:enumeration value="aze"/>
+			<xs:enumeration value="bad"/>
+			<xs:enumeration value="bai"/>
+			<xs:enumeration value="bak"/>
+			<xs:enumeration value="bal"/>
+			<xs:enumeration value="bam"/>
+			<xs:enumeration value="ban"/>
+			<xs:enumeration value="baq"/>
+			<xs:enumeration value="bas"/>
+			<xs:enumeration value="bat"/>
+			<xs:enumeration value="bej"/>
+			<xs:enumeration value="bel"/>
+			<xs:enumeration value="bem"/>
+			<xs:enumeration value="ben"/>
+			<xs:enumeration value="ber"/>
+			<xs:enumeration value="bho"/>
+			<xs:enumeration value="bih"/>
+			<xs:enumeration value="bik"/>
+			<xs:enumeration value="bin"/>
+			<xs:enumeration value="bis"/>
+			<xs:enumeration value="bla"/>
+			<xs:enumeration value="bnt"/>
+			<xs:enumeration value="bod"/>
+			<xs:enumeration value="bos"/>
+			<xs:enumeration value="bra"/>
+			<xs:enumeration value="bre"/>
+			<xs:enumeration value="btk"/>
+			<xs:enumeration value="bua"/>
+			<xs:enumeration value="bug"/>
+			<xs:enumeration value="bul"/>
+			<xs:enumeration value="bur"/>
+			<xs:enumeration value="cad"/>
+			<xs:enumeration value="cai"/>
+			<xs:enumeration value="car"/>
+			<xs:enumeration value="cat"/>
+			<xs:enumeration value="cau"/>
+			<xs:enumeration value="ceb"/>
+			<xs:enumeration value="cel"/>
+			<xs:enumeration value="ces"/>
+			<xs:enumeration value="cha"/>
+			<xs:enumeration value="chb"/>
+			<xs:enumeration value="che"/>
+			<xs:enumeration value="chg"/>
+			<xs:enumeration value="chi"/>
+			<xs:enumeration value="chk"/>
+			<xs:enumeration value="chm"/>
+			<xs:enumeration value="chn"/>
+			<xs:enumeration value="cho"/>
+			<xs:enumeration value="chp"/>
+			<xs:enumeration value="chr"/>
+			<xs:enumeration value="chu"/>
+			<xs:enumeration value="chv"/>
+			<xs:enumeration value="chy"/>
+			<xs:enumeration value="cmc"/>
+			<xs:enumeration value="cop"/>
+			<xs:enumeration value="cor"/>
+			<xs:enumeration value="cos"/>
+			<xs:enumeration value="cpe"/>
+			<xs:enumeration value="cpf"/>
+			<xs:enumeration value="cpp"/>
+			<xs:enumeration value="cre"/>
+			<xs:enumeration value="crp"/>
+			<xs:enumeration value="cus"/>
+			<xs:enumeration value="cym"/>
+			<xs:enumeration value="cze"/>
+			<xs:enumeration value="dak"/>
+			<xs:enumeration value="dan"/>
+			<xs:enumeration value="day"/>
+			<xs:enumeration value="del"/>
+			<xs:enumeration value="den"/>
+			<xs:enumeration value="deu"/>
+			<xs:enumeration value="dgr"/>
+			<xs:enumeration value="din"/>
+			<xs:enumeration value="div"/>
+			<xs:enumeration value="doi"/>
+			<xs:enumeration value="dra"/>
+			<xs:enumeration value="dua"/>
+			<xs:enumeration value="dum"/>
+			<xs:enumeration value="dut"/>
+			<xs:enumeration value="dyu"/>
+			<xs:enumeration value="dzo"/>
+			<xs:enumeration value="efi"/>
+			<xs:enumeration value="egy"/>
+			<xs:enumeration value="eka"/>
+			<xs:enumeration value="ell"/>
+			<xs:enumeration value="elx"/>
+			<xs:enumeration value="eng"/>
+			<xs:enumeration value="enm"/>
+			<xs:enumeration value="epo"/>
+			<xs:enumeration value="est"/>
+			<xs:enumeration value="eus"/>
+			<xs:enumeration value="ewe"/>
+			<xs:enumeration value="ewo"/>
+			<xs:enumeration value="fan"/>
+			<xs:enumeration value="fao"/>
+			<xs:enumeration value="fas"/>
+			<xs:enumeration value="fat"/>
+			<xs:enumeration value="fij"/>
+			<xs:enumeration value="fin"/>
+			<xs:enumeration value="fiu"/>
+			<xs:enumeration value="fon"/>
+			<xs:enumeration value="fra"/>
+			<xs:enumeration value="fre"/>
+			<xs:enumeration value="frm"/>
+			<xs:enumeration value="fro"/>
+			<xs:enumeration value="fry"/>
+			<xs:enumeration value="ful"/>
+			<xs:enumeration value="fur"/>
+			<xs:enumeration value="gaa"/>
+			<xs:enumeration value="gay"/>
+			<xs:enumeration value="gba"/>
+			<xs:enumeration value="gem"/>
+			<xs:enumeration value="geo"/>
+			<xs:enumeration value="ger"/>
+			<xs:enumeration value="gez"/>
+			<xs:enumeration value="gil"/>
+			<xs:enumeration value="gla"/>
+			<xs:enumeration value="gle"/>
+			<xs:enumeration value="glg"/>
+			<xs:enumeration value="glv"/>
+			<xs:enumeration value="gmh"/>
+			<xs:enumeration value="goh"/>
+			<xs:enumeration value="gon"/>
+			<xs:enumeration value="gor"/>
+			<xs:enumeration value="got"/>
+			<xs:enumeration value="grb"/>
+			<xs:enumeration value="grc"/>
+			<xs:enumeration value="gre"/>
+			<xs:enumeration value="grn"/>
+			<xs:enumeration value="guj"/>
+			<xs:enumeration value="gwi"/>
+			<xs:enumeration value="hai"/>
+			<xs:enumeration value="hau"/>
+			<xs:enumeration value="haw"/>
+			<xs:enumeration value="heb"/>
+			<xs:enumeration value="her"/>
+			<xs:enumeration value="hil"/>
+			<xs:enumeration value="him"/>
+			<xs:enumeration value="hin"/>
+			<xs:enumeration value="hit"/>
+			<xs:enumeration value="hmn"/>
+			<xs:enumeration value="hmo"/>
+			<xs:enumeration value="hrv"/>
+			<xs:enumeration value="hun"/>
+			<xs:enumeration value="hup"/>
+			<xs:enumeration value="hye"/>
+			<xs:enumeration value="iba"/>
+			<xs:enumeration value="ibo"/>
+			<xs:enumeration value="ice"/>
+			<xs:enumeration value="ijo"/>
+			<xs:enumeration value="iku"/>
+			<xs:enumeration value="ile"/>
+			<xs:enumeration value="ilo"/>
+			<xs:enumeration value="ina"/>
+			<xs:enumeration value="inc"/>
+			<xs:enumeration value="ind"/>
+			<xs:enumeration value="ine"/>
+			<xs:enumeration value="ipk"/>
+			<xs:enumeration value="ira"/>
+			<xs:enumeration value="iro"/>
+			<xs:enumeration value="isl"/>
+			<xs:enumeration value="ita"/>
+			<xs:enumeration value="jav"/>
+			<xs:enumeration value="jpn"/>
+			<xs:enumeration value="jpr"/>
+			<xs:enumeration value="jrb"/>
+			<xs:enumeration value="kaa"/>
+			<xs:enumeration value="kab"/>
+			<xs:enumeration value="kac"/>
+			<xs:enumeration value="kal"/>
+			<xs:enumeration value="kam"/>
+			<xs:enumeration value="kan"/>
+			<xs:enumeration value="kar"/>
+			<xs:enumeration value="kas"/>
+			<xs:enumeration value="kat"/>
+			<xs:enumeration value="kau"/>
+			<xs:enumeration value="kaw"/>
+			<xs:enumeration value="kaz"/>
+			<xs:enumeration value="kha"/>
+			<xs:enumeration value="khi"/>
+			<xs:enumeration value="khm"/>
+			<xs:enumeration value="kho"/>
+			<xs:enumeration value="kik"/>
+			<xs:enumeration value="kin"/>
+			<xs:enumeration value="kir"/>
+			<xs:enumeration value="kmb"/>
+			<xs:enumeration value="kok"/>
+			<xs:enumeration value="kom"/>
+			<xs:enumeration value="kon"/>
+			<xs:enumeration value="kor"/>
+			<xs:enumeration value="kos"/>
+			<xs:enumeration value="kpe"/>
+			<xs:enumeration value="kro"/>
+			<xs:enumeration value="kru"/>
+			<xs:enumeration value="kua"/>
+			<xs:enumeration value="kum"/>
+			<xs:enumeration value="kur"/>
+			<xs:enumeration value="kut"/>
+			<xs:enumeration value="lad"/>
+			<xs:enumeration value="lah"/>
+			<xs:enumeration value="lam"/>
+			<xs:enumeration value="lao"/>
+			<xs:enumeration value="lat"/>
+			<xs:enumeration value="lav"/>
+			<xs:enumeration value="lez"/>
+			<xs:enumeration value="lin"/>
+			<xs:enumeration value="lit"/>
+			<xs:enumeration value="lol"/>
+			<xs:enumeration value="loz"/>
+			<xs:enumeration value="ltz"/>
+			<xs:enumeration value="lua"/>
+			<xs:enumeration value="lub"/>
+			<xs:enumeration value="lug"/>
+			<xs:enumeration value="lui"/>
+			<xs:enumeration value="lun"/>
+			<xs:enumeration value="luo"/>
+			<xs:enumeration value="lus"/>
+			<xs:enumeration value="mac"/>
+			<xs:enumeration value="mad"/>
+			<xs:enumeration value="mag"/>
+			<xs:enumeration value="mah"/>
+			<xs:enumeration value="mai"/>
+			<xs:enumeration value="mak"/>
+			<xs:enumeration value="mal"/>
+			<xs:enumeration value="man"/>
+			<xs:enumeration value="mao"/>
+			<xs:enumeration value="map"/>
+			<xs:enumeration value="mar"/>
+			<xs:enumeration value="mas"/>
+			<xs:enumeration value="may"/>
+			<xs:enumeration value="mdr"/>
+			<xs:enumeration value="men"/>
+			<xs:enumeration value="mga"/>
+			<xs:enumeration value="mic"/>
+			<xs:enumeration value="min"/>
+			<xs:enumeration value="mis"/>
+			<xs:enumeration value="mkd"/>
+			<xs:enumeration value="mkh"/>
+			<xs:enumeration value="mlg"/>
+			<xs:enumeration value="mlt"/>
+			<xs:enumeration value="mnc"/>
+			<xs:enumeration value="mni"/>
+			<xs:enumeration value="mno"/>
+			<xs:enumeration value="moh"/>
+			<xs:enumeration value="mol"/>
+			<xs:enumeration value="mon"/>
+			<xs:enumeration value="mos"/>
+			<xs:enumeration value="mri"/>
+			<xs:enumeration value="msa"/>
+			<xs:enumeration value="mul"/>
+			<xs:enumeration value="mun"/>
+			<xs:enumeration value="mus"/>
+			<xs:enumeration value="mwr"/>
+			<xs:enumeration value="mya"/>
+			<xs:enumeration value="myn"/>
+			<xs:enumeration value="nah"/>
+			<xs:enumeration value="nai"/>
+			<xs:enumeration value="nau"/>
+			<xs:enumeration value="nav"/>
+			<xs:enumeration value="nbl"/>
+			<xs:enumeration value="nde"/>
+			<xs:enumeration value="ndo"/>
+			<xs:enumeration value="nds"/>
+			<xs:enumeration value="nep"/>
+			<xs:enumeration value="new"/>
+			<xs:enumeration value="nia"/>
+			<xs:enumeration value="nic"/>
+			<xs:enumeration value="niu"/>
+			<xs:enumeration value="nld"/>
+			<xs:enumeration value="nno"/>
+			<xs:enumeration value="nob"/>
+			<xs:enumeration value="non"/>
+			<xs:enumeration value="nor"/>
+			<xs:enumeration value="nso"/>
+			<xs:enumeration value="nub"/>
+			<xs:enumeration value="nya"/>
+			<xs:enumeration value="nym"/>
+			<xs:enumeration value="nyn"/>
+			<xs:enumeration value="nyo"/>
+			<xs:enumeration value="nzi"/>
+			<xs:enumeration value="oci"/>
+			<xs:enumeration value="oji"/>
+			<xs:enumeration value="ori"/>
+			<xs:enumeration value="orm"/>
+			<xs:enumeration value="osa"/>
+			<xs:enumeration value="oss"/>
+			<xs:enumeration value="ota"/>
+			<xs:enumeration value="oto"/>
+			<xs:enumeration value="oth"/>
+			<xs:enumeration value="paa"/>
+			<xs:enumeration value="pag"/>
+			<xs:enumeration value="pal"/>
+			<xs:enumeration value="pam"/>
+			<xs:enumeration value="pan"/>
+			<xs:enumeration value="pap"/>
+			<xs:enumeration value="pau"/>
+			<xs:enumeration value="peo"/>
+			<xs:enumeration value="per"/>
+			<xs:enumeration value="phi"/>
+			<xs:enumeration value="phn"/>
+			<xs:enumeration value="pli"/>
+			<xs:enumeration value="pol"/>
+			<xs:enumeration value="pon"/>
+			<xs:enumeration value="por"/>
+			<xs:enumeration value="pra"/>
+			<xs:enumeration value="pro"/>
+			<xs:enumeration value="pus"/>
+			<xs:enumeration value="qaa"/>
+			<xs:enumeration value="que"/>
+			<xs:enumeration value="raj"/>
+			<xs:enumeration value="rap"/>
+			<xs:enumeration value="rar"/>
+			<xs:enumeration value="roa"/>
+			<xs:enumeration value="roh"/>
+			<xs:enumeration value="rom"/>
+			<xs:enumeration value="ron"/>
+			<xs:enumeration value="rum"/>
+			<xs:enumeration value="run"/>
+			<xs:enumeration value="rus"/>
+			<xs:enumeration value="sad"/>
+			<xs:enumeration value="sag"/>
+			<xs:enumeration value="sah"/>
+			<xs:enumeration value="sai"/>
+			<xs:enumeration value="sal"/>
+			<xs:enumeration value="sam"/>
+			<xs:enumeration value="san"/>
+			<xs:enumeration value="sas"/>
+			<xs:enumeration value="sat"/>
+			<xs:enumeration value="scc"/>
+			<xs:enumeration value="sco"/>
+			<xs:enumeration value="scr"/>
+			<xs:enumeration value="sel"/>
+			<xs:enumeration value="sem"/>
+			<xs:enumeration value="sga"/>
+			<xs:enumeration value="sgn"/>
+			<xs:enumeration value="shn"/>
+			<xs:enumeration value="sid"/>
+			<xs:enumeration value="sin"/>
+			<xs:enumeration value="sio"/>
+			<xs:enumeration value="sit"/>
+			<xs:enumeration value="sla"/>
+			<xs:enumeration value="slk"/>
+			<xs:enumeration value="slo"/>
+			<xs:enumeration value="slv"/>
+			<xs:enumeration value="sme"/>
+			<xs:enumeration value="smi"/>
+			<xs:enumeration value="smo"/>
+			<xs:enumeration value="sna"/>
+			<xs:enumeration value="snd"/>
+			<xs:enumeration value="snk"/>
+			<xs:enumeration value="sog"/>
+			<xs:enumeration value="som"/>
+			<xs:enumeration value="son"/>
+			<xs:enumeration value="sot"/>
+			<xs:enumeration value="spa"/>
+			<xs:enumeration value="sqi"/>
+			<xs:enumeration value="srd"/>
+			<xs:enumeration value="srp"/>
+			<xs:enumeration value="srr"/>
+			<xs:enumeration value="ssa"/>
+			<xs:enumeration value="ssw"/>
+			<xs:enumeration value="suk"/>
+			<xs:enumeration value="sun"/>
+			<xs:enumeration value="sus"/>
+			<xs:enumeration value="sux"/>
+			<xs:enumeration value="swa"/>
+			<xs:enumeration value="swe"/>
+			<xs:enumeration value="svk"/>
+			<xs:enumeration value="syr"/>
+			<xs:enumeration value="tah"/>
+			<xs:enumeration value="tai"/>
+			<xs:enumeration value="tam"/>
+			<xs:enumeration value="tat"/>
+			<xs:enumeration value="tel"/>
+			<xs:enumeration value="tem"/>
+			<xs:enumeration value="ter"/>
+			<xs:enumeration value="tet"/>
+			<xs:enumeration value="tgk"/>
+			<xs:enumeration value="tgl"/>
+			<xs:enumeration value="tha"/>
+			<xs:enumeration value="tib"/>
+			<xs:enumeration value="tig"/>
+			<xs:enumeration value="tir"/>
+			<xs:enumeration value="tiv"/>
+			<xs:enumeration value="tkl"/>
+			<xs:enumeration value="tli"/>
+			<xs:enumeration value="tmh"/>
+			<xs:enumeration value="tog"/>
+			<xs:enumeration value="ton"/>
+			<xs:enumeration value="tpi"/>
+			<xs:enumeration value="tsi"/>
+			<xs:enumeration value="tsn"/>
+			<xs:enumeration value="tso"/>
+			<xs:enumeration value="tuk"/>
+			<xs:enumeration value="tum"/>
+			<xs:enumeration value="tur"/>
+			<xs:enumeration value="tut"/>
+			<xs:enumeration value="tvl"/>
+			<xs:enumeration value="twi"/>
+			<xs:enumeration value="tyv"/>
+			<xs:enumeration value="uga"/>
+			<xs:enumeration value="uig"/>
+			<xs:enumeration value="ukr"/>
+			<xs:enumeration value="umb"/>
+			<xs:enumeration value="und"/>
+			<xs:enumeration value="urd"/>
+			<xs:enumeration value="uzb"/>
+			<xs:enumeration value="vai"/>
+			<xs:enumeration value="ven"/>
+			<xs:enumeration value="vie"/>
+			<xs:enumeration value="vol"/>
+			<xs:enumeration value="vot"/>
+			<xs:enumeration value="wak"/>
+			<xs:enumeration value="wal"/>
+			<xs:enumeration value="war"/>
+			<xs:enumeration value="was"/>
+			<xs:enumeration value="wel"/>
+			<xs:enumeration value="wen"/>
+			<xs:enumeration value="wol"/>
+			<xs:enumeration value="xho"/>
+			<xs:enumeration value="yao"/>
+			<xs:enumeration value="yap"/>
+			<xs:enumeration value="yid"/>
+			<xs:enumeration value="yor"/>
+			<xs:enumeration value="ypk"/>
+			<xs:enumeration value="zap"/>
+			<xs:enumeration value="zen"/>
+			<xs:enumeration value="zha"/>
+			<xs:enumeration value="zho"/>
+			<xs:enumeration value="znd"/>
+			<xs:enumeration value="zul"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="typeSTUDY_COURSE">
+		<xs:sequence>
+			<xs:element name="DEGREE_INFO" type="typeDEGREE_INFO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Abschluss relevante Informationen, z.B. Mastertyp, Doppelabschluss usw.</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Abschluss relevante Informationen, z.B. Mastertyp, Doppelabschluss usw.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="STUDY_TYPE" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studienformen (z.B. Ausbildungs-integrierend)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Die Zuordnung zu einer Studienform erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe einer Studienform mittels der zur Studienform gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="STUDY_TYPE_ADD_INFO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Ergänzende Informationen zur Studienform</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Ergänzende Informationen zur Studienform wird als Freitext übertragen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="REGULAR_STUDY_PERIOD" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Regelstudienzeit</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Regelstudienzeit wird als Anzahl (aktuell zwischen 1 und 20) vom Typ REGULAR_STUDY_PERIOD_TYPE übertragen.</xs:documentation>
+				</xs:annotation>
+  				<xs:simpleType>
+    				<xs:restriction base="xs:integer">
+      					<xs:minInclusive value="1"/>
+      					<xs:maxInclusive value="20"/>
+    				</xs:restriction>
+  				</xs:simpleType>
+			</xs:element>
+			<xs:element name="REGULAR_STUDY_PERIOD_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Typ für Regelstudienzeit</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Die Regelstudienzeit ist von der angegebene Art (entweder Semester oder Trimester). Eine Nicht-Angabe wird als Default-Typ Semester ausgewertet.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+						<xs:enumeration value="semester"/>
+						<xs:enumeration value="trimester"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ACCREDITATION" type="typeACCREDITATION" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Akkreditierung</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Informationen zur Akkreditierung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EDU_RESTRICTIONS" type="typeEDU_RESTRICTIONS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Bedingungen zum Studienangebot</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Bedingungen zum Studienangebot</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SPECIALIZATION" type="typeSPECIALIZATION" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studien-Schwerpunkte</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Studien-Schwerpunkte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeDEGREE_INFO">
+		<xs:sequence>
+			<xs:element name="DEGREE_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Abschlusstyp (z.B. Mastertyp)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Abschlusstyp (z.B. Mastertyp). Die Zuordnung zu einem Abschlusstyp erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe eines Abschlussyps mittels der zum Abschlusstyp gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="UNIV_DEGREE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Abschlussgrad (z.B. Diplom)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Die Zuordnung zu einem Abschlussgrad erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe eines Abschlussgrades mittels der zum Abschlussgrad gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TEACHING_QUALIFICATION" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Kennzeichnung, ob der Studiengang einen zum Lehramt befähigt</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Studiengang ist Lehramtsbefähigend</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TEACHING_DEGREE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Abschluss: Lehramt nach Schulformen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Die Zuordnung zu einem Lehramt erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe eines Lehramtes mittels der zum Abschluss gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DOUBLE_DEGREE" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Internationaler Doppelabschluss (Double Degree)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">True: Doppelabschluss möglich, False: Doppelabschluss nicht möglich</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INTERNAL_DEGREE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Abschlussgrad int.</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Geben Sie hier den von der Hochschule vergebenen Abschlussgrad ein. (z.B.:  Bachelor of Arts, Bachelor of Engineering, Bachelor of Fine Arts, Master of Science, Artist Diploma, Meisterklassenexamen).</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeACCREDITATION">
+		<xs:sequence>
+			<xs:element name="TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Erstakkreditierung oder Reakkreditierung</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Erstakkreditierung oder Reakkreditierung. Die Zuordnung zu einer Akkreditierung erfolgt über das Attribut 'type': Für die korrekte Einordnung in KURSNET ist die Angabe einer Akkreditierung mittels der zur Akkreditierung gehörigen ganzen Zahl erforderlich. Der für open-Qcat in der vorliegenden Version gültigen Wertebereich ist der KURSNET-Website zu entnehmen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FROM" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Akkreditierung von Datum (Format: format YYYY-MM-DD)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Akkreditierung von Datum (Format: format YYYY-MM-DD)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TO" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Akkreditierung bis Datum (Format: format YYYY-MM-DD)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Akkreditierung bis Datum (Format: format YYYY-MM-DD)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONDITIONS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Auflagen zur Akkreditierung</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Auflagen zur Akkreditierung werden als Freitext übertragen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeEDU_RESTRICTIONS">
+		<xs:sequence>
+			<xs:element name="SSC_REQUIRED" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studieren ohne Abitur möglich oder nicht möglich</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">False: Studieren ohne Abitur nicht möglich, True: Studieren ohne Abitur möglich</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WO_SSC" type="typeWO_SSC" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Bedingungen zum Studienangebot</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Bedingungen zum Studienangebot</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SSC_DESC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studieren ohne Abitur: Weitere Informationen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Weitere Informationen werden als Freitext übertragen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeWO_SSC">
+		<xs:sequence>
+			<xs:element name="CONDITIONS_WO_SSC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studieren ohne Abitur: Zugangsbedingungen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Pflichtfeld, wenn Studieren ohne Abitur möglich ist (SSC_REQUIRED = False). Weitere Informationen zu Zugangsbedingungen werden als Freitext (CONDITIONS_WO_SSC_DESC) übertragen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CONDITIONS_WO_SSC_DESC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studieren ohne Abitur: Weitere Informationen zu Zugangsbedingungen</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Weitere Informationen zu Zugangsbedingungen werden als Freitext übertragen.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeSPECIALIZATION">
+		<xs:sequence>
+			<xs:element name="CORE_AREA" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="description" xml:lang="de">Studien-Schwerpunkte (z.B. Tourismusmanagement)</xs:documentation>
+					<xs:documentation source="descr_short" xml:lang="de">Studien-Schwerpunkte werden als Freitext übertragen</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

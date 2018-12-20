@@ -12,6 +12,14 @@ $config[] = [
 'value' => '',
 ];
 
+//仅保留这些节点（及其子节点）------------------------------------------
+$config[] = [
+    'action' => 'keepOnlyTheseNodes',
+    'nodes' => [
+        '',
+    ]
+];
+
 //修改（叶）节点的值---------------------------------------------------
 
 $config[] = [
@@ -95,13 +103,13 @@ $config[] = [
 'value' => '2',
 ];
 
-$config[] = [
+/*$config[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'SERVICE_PRICE',
 'attribute' => 'type',
 'path' => '*',
 'value' => 'net_customer',
-];
+];*/
 
 $config[] = [
 'action' => 'setNodeAttribute',
@@ -167,5 +175,16 @@ $config[] = [
     'path' => '*',
     'value' => '101',
 ];
+
+
+//删除属性----------------------------------------------------------------------
+
+$config[] = [
+'action' => 'removeNodeAttribute',
+'nodename' => 'SERVICE_PRICE',
+'attribute' => 'type',
+'path' => '*',
+];
+
 
 return $config;
