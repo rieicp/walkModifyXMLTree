@@ -141,7 +141,7 @@ class XmlGerneralHandler
 
                 if ($debug) {
                     echo '<hr />';
-                    echo '<p>Path = ['. implode('/', $path) .']</p>';
+                    echo '<h5>Path = ['. implode('/', $path) . '/' . $node->getName() . ']</h5>';
                     echo '<h3>' . $node->getName() . '</h3>';
                     echo '<p>attributes: ';
                     foreach ($node->attributes() as $name => $vl) {
