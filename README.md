@@ -60,6 +60,8 @@
   - 将输出的路径拷贝到config/premium.php中
     - $config['action'] => 'keepOnlyTheseNodes' 的 ['nodePaths'] => 下
 
+- 按照testAddServices.php的模式调用API
+
 ### 资源 ###
 
 - 路径

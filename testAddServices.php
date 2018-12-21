@@ -14,34 +14,27 @@ $xmlhandler = new XmlXpathHandler();
  * snippet loading and mofifying
  */
 $sfile = __DIR__ . '/Resources/snippet/service.xml';
-
+$configs = [];
 $course_id = 'AKU-0123456+++';
 $configs['setNodeValue'] = [
     '*/PRODUCT_ID' => $course_id,
     '*/COURSE_ID' => $course_id,
 ];
 
-$snippetNode2 = handleXml($sfile, $xmlloader, $xmlhandler, $configs);
-$snippet2 = $snippetNode2->asXML();
+$snippetNode = handleXml($sfile, $xmlloader, $xmlhandler, $configs);//simpleXML node
+$snippet = $snippetNode->asXML();
 
 
 /**
  * add service(snippet) node to the tree
  */
 $xmlfile = __DIR__ . '/Resources/xml/generated_Katalog.xml';
-$str = $xmlloader->loadExampleXML($xmlfile);
-$xml = simplexml_load_string($str);
-
 $configs = [];
-$configs[] = [
-    'action' => 'addChildNode',
-    'nodename' => 'NEW_CATALOG',
-    'path' => '*',
-    'snippet' => $snippet2,
+$configs['addChildNode'] = [
+    '*/NEW_CATALOG' => $snippet,
 ];
 
-$xmlhandler->setConfigs($configs);
-$xml2 = $xmlhandler->handle($xml);
-$content = $xml2->asXML();
+$xmlTree = handleXml($xmlfile, $xmlloader, $xmlhandler, $configs);//simpleXML node
+$content = $xmlTree->asXML();
 $content = preg_replace("/\s*\n\s*\n/", "\n", $content);//空白行整合
 echo $content;

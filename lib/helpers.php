@@ -3,7 +3,12 @@
 function convert2StandardConfigs($configs)
 {
     $configsStd = [];
-    $configsStd = handleSetNodeValueConfigs($configs, $configsStd);
+    if (!empty($configs['setNodeValue'])) {
+        $configsStd = handleSetNodeValueConfigs($configs, $configsStd);
+    }
+    if (!empty($configs['addChildNode'])) {
+        $configsStd = handleAddChildNodeConfigs($configs, $configsStd);
+    }
 
     return $configsStd;
 }
@@ -32,6 +37,35 @@ function handleSetNodeValueConfigs($configs, $configsStd): array
             'nodename' => $nodename,
             'path' => $path,
             'value' => $val,
+        ];
+    }
+    return $configsStd;
+}
+
+/**
+ * @param $configs
+ * @param $configsStd
+ * @return array
+ */
+function handleAddChildNodeConfigs($configs, $configsStd): array
+{
+    foreach ($configs['addChildNode'] as $key => $val) {
+
+        if (strpos($key, '/') === false) {
+
+            $path = '*';
+            $nodename = $key;
+
+        } else {
+
+            list($path, $nodename) = explode('/', $key);
+        }
+
+        $configsStd[] = [
+            'action' => 'addChildNode',
+            'nodename' => $nodename,
+            'path' => $path,
+            'snippet' => $val,
         ];
     }
     return $configsStd;
