@@ -6,8 +6,8 @@ use WalkModifyXmlTree\XmlSnippetLoader;
 
 class PremiumConfigurationLoader
 {
-    public function getConfigurations()
+    public function loadConfigurations($file)
     {
-        return require_once (__DIR__ . '/../config/premium.php');
+        return require_once ($file);
     }
 }

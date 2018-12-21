@@ -42,7 +42,7 @@
   - 配置文件
     - config/premium.php
     - config/normal.php    
-  - 对照如下文档/资源的信息
+  - 验证XML时须对照/使用如下文档/资源的信息
     - Online-Validation
       - https://www.freeformatter.com/xml-validator-xsd.html
       - http://www.utilities-online.info/xsdvalidation 
@@ -61,6 +61,10 @@
     - $config['action'] => 'keepOnlyTheseNodes' 的 ['nodePaths'] => 下
 
 - 按照testAddServices.php的模式调用API
+  - 使用全局函数convert2StandardConfigs()来生成configs
+
+- 项目初始时，很多XML模板、snippet须创建，宜按照test_xpathhandler_output_xml.php的模式
+  - 使用ConfigLoader, PremiumConfigLoader来逐步产生、补充、完善configs
 
 ### 资源 ###
 

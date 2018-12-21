@@ -4,8 +4,8 @@ namespace WalkModifyXmlTree;
 
 class ConfigurationLoader
 {
-    public function getConfigurations()
+    public function loadConfigurations($file)
     {
-        return require_once (__DIR__ . '/../config/normal.php');
+        return require_once ($file);
     }
 }
