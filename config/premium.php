@@ -2,7 +2,7 @@
 
 use WalkModifyXmlTree\XmlSnippetLoader;
 
-$config = [];
+$configs = [];
 
 //todo:与config/normal.php合并，是否可行？
 //todo:若此配置文件为空，是否会产生错误？
@@ -12,7 +12,7 @@ $config = [];
 $snippet = new XmlSnippetLoader();
 $section = $snippet->loadSnippet(__DIR__ . '/../Resources/snippet/education.xml');
 
-$config[] = [
+$configs[] = [
     'action' => 'addChildNode',
     'nodename' => 'SERVICE_MODULE',
     'path' => '*',
@@ -21,7 +21,7 @@ $config[] = [
 
 
 //仅保留这些节点（及其子节点）------------------------------------------
-$config[] = [
+$configs[] = [
     'action' => 'keepOnlyTheseNodes',
     'nodePaths' => [
         '/OPENQCAT/HEADER/CATALOG/LANGUAGE',
@@ -94,11 +94,11 @@ $config[] = [
 
 //删除节点-----------------------------------------------------------------------
 
-/*$config[] = [
+/*$configs[] = [
     'action' => 'removeNode',
     'nodename' => 'STUDY_COURSE',
     'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
 ];*/
 
 
-return $config;
+return $configs;

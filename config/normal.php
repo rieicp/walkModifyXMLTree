@@ -1,11 +1,11 @@
 <?php
 
-$config = [];
+$configs = [];
 
 /**
 * 首先将所有叶节点的虚假值如'str1234'设为空
 */
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => '*|leaf', //所有的叶节点
 'path' => '*',
@@ -14,42 +14,42 @@ $config[] = [
 
 //修改（叶）节点的值---------------------------------------------------
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'CATALOG_ID',
 'path' => '*',
 'value' => 'CAT-0123456789',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'CATALOG_VERSION',
 'path' => '*',
 'value' => '0.0.12',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'COUNTRY_CODED',
 'path' => '*',
 'value' => 'DE',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'COUNTRY',
 'path' => '*',
 'value' => 'D',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'NAME',
 'path' => 'HEADER/SUPPLIER/ADDRESS',
 'value' => 'Sabc Wdef',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'PHONE',
 'path' => '*',
@@ -57,28 +57,28 @@ $config[] = [
 ];
 
 $couse_id = 'AKU-0123456';
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'PRODUCT_ID',
 'path' => 'NEW_CATALOG/SERVICE',
 'value' => $couse_id,
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'COURSE_ID',
 'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS/SERVICE_MODULE/EDUCATION',
 'value' => $couse_id,
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'TITLE',
 'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
 'value' => 'Abcdefg',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeValue',
 'nodename' => 'DESCRIPTION_LONG',
 'path' => 'NEW_CATALOG/SERVICE/SERVICE_DETAILS',
@@ -87,7 +87,7 @@ $config[] = [
 
 //修改属性----------------------------------------------------------------------
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'EXTENDED_INFO',
 'attribute' => 'input_type',
@@ -95,7 +95,7 @@ $config[] = [
 'value' => '2',
 ];
 
-/*$config[] = [
+/*$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'SERVICE_PRICE',
 'attribute' => 'type',
@@ -103,7 +103,7 @@ $config[] = [
 'value' => 'net_customer',
 ];*/
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'SEGMENT_TYPE',
 'attribute' => 'type',
@@ -111,7 +111,7 @@ $config[] = [
 'value' => '1',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'EDUCATION_TYPE',
 'attribute' => 'type',
@@ -119,7 +119,7 @@ $config[] = [
 'value' => '1234567',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'CONTACT_ROLE',
 'attribute' => 'type',
@@ -128,7 +128,7 @@ $config[] = [
 ];
 
 //??????
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'EDUCATION',
 'attribute' => 'type',
@@ -136,7 +136,7 @@ $config[] = [
 'value' => 'true',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'INSTRUCTION_FORM',
 'attribute' => 'type',
@@ -144,7 +144,7 @@ $config[] = [
 'value' => '1',
 ];
 
-$config[] = [
+$configs[] = [
 'action' => 'setNodeAttribute',
 'nodename' => 'ORGANIZATIONAL_FORM',
 'attribute' => 'type',
@@ -152,7 +152,7 @@ $config[] = [
 'value' => '1',
 ];
 
-$config[] = [
+$configs[] = [
     'action' => 'setNodeAttribute',
     'nodename' => 'EDUCATION_TYPE',
     'attribute' => 'type',
@@ -160,7 +160,7 @@ $config[] = [
     'value' => '100',
 ];
 
-$config[] = [
+$configs[] = [
     'action' => 'setNodeAttribute',
     'nodename' => 'INSTITUTION',
     'attribute' => 'type',
@@ -171,7 +171,7 @@ $config[] = [
 
 //删除属性----------------------------------------------------------------------
 
-$config[] = [
+$configs[] = [
 'action' => 'removeNodeAttribute',
 'nodename' => 'SERVICE_PRICE',
 'attribute' => 'type',
@@ -179,4 +179,4 @@ $config[] = [
 ];
 
 
-return $config;
+return $configs;

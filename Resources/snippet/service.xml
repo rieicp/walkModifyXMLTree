@@ -1,0 +1,48 @@
+        <SERVICE mode="new">
+            <PRODUCT_ID>AKU-0123456</PRODUCT_ID>
+            <COURSE_TYPE>1</COURSE_TYPE>
+            <SERVICE_DETAILS>
+                <TITLE>Abcdefg</TITLE>
+                <DESCRIPTION_LONG>HxBFS9tBQUAhL5WGC2EtOCW+Lxpjr3Gz3tgUsmedLFeuTp8ZI41EHWq70x0d0Pqfie0=</DESCRIPTION_LONG>
+                <CONTACT>
+                    <CONTACT_ROLE type="1"></CONTACT_ROLE>
+                    <LAST_NAME></LAST_NAME>
+                    <ADDRESS>
+                        <NAME></NAME>
+                        <ZIP></ZIP>
+                        <CITY></CITY>
+                        <COUNTRY_CODED>DE</COUNTRY_CODED>
+                        <COUNTRY>D</COUNTRY>
+                        <EMAILS>
+                            <EMAIL></EMAIL>
+                        </EMAILS>
+                    </ADDRESS>
+                </CONTACT>
+                <SERVICE_DATE>
+                    <START_DATE>2012-12-13T12:12:12</START_DATE>
+                    <END_DATE>2012-12-13T12:12:12</END_DATE>
+                </SERVICE_DATE>
+                <SERVICE_MODULE><EDUCATION type="true">
+                    <COURSE_ID>AKU-0123456</COURSE_ID>
+                    <EXTENDED_INFO>
+                        <INSTITUTION type="101"/>
+                        <INSTRUCTION_FORM type="1"/>
+                        <EDUCATION_TYPE type="100"/>
+                    </EXTENDED_INFO>
+                    <MODULE_COURSE>
+                        <LOCATION>
+                            <NAME>S1234567</NAME>
+                            <ZIP>33615</ZIP>
+                            <CITY>Bielefeld</CITY>
+                            <COUNTRY_CODED>DE</COUNTRY_CODED>
+                            <COUNTRY>D</COUNTRY>
+                        </LOCATION>
+                        <DURATION type="1"/>
+                        <FLEXIBLE_START>true</FLEXIBLE_START>
+                        <EXTENDED_INFO>
+                            <SEGMENT_TYPE type="1"/>
+                        </EXTENDED_INFO>
+                    </MODULE_COURSE>
+                </EDUCATION></SERVICE_MODULE>
+            </SERVICE_DETAILS>
+        </SERVICE>
