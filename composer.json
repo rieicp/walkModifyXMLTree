@@ -9,6 +9,9 @@
   "autoload": {
     "psr-4": {
       "WalkModifyXmlTree\\" : "src/"
-    }
+    },
+    "files": [
+      "lib/helpers.php"
+    ]
   }
 }

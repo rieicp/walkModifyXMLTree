@@ -14,26 +14,14 @@ $xmlhandler = new XmlXpathHandler();
  * snippet loading and mofifying
  */
 $sfile = __DIR__ . '/Resources/snippet/service.xml';
-$str = $xmlloader->loadExampleXML($sfile);
-$snippet = simplexml_load_string($str);
 
-$couse_id = 'AKU-0123456+++';
-$configs[] = [
-    'action' => 'setNodeValue',
-    'nodename' => 'PRODUCT_ID',
-    'path' => '*',
-    'value' => $couse_id,
+$course_id = 'AKU-0123456+++';
+$configs['setNodeValue'] = [
+    '*/PRODUCT_ID' => $course_id,
+    '*/COURSE_ID' => $course_id,
 ];
 
-$configs[] = [
-    'action' => 'setNodeValue',
-    'nodename' => 'COURSE_ID',
-    'path' => '*',
-    'value' => $couse_id,
-];
-
-$xmlhandler->setConfigs($configs);
-$snippetNode2 = $xmlhandler->handle($snippet);
+$snippetNode2 = handleXml($sfile, $xmlloader, $xmlhandler, $configs);
 $snippet2 = $snippetNode2->asXML();
 
 
