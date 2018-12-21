@@ -3,8 +3,8 @@ header("Content-Type:text/xml;charset=ISO-8859-1");
 
 require_once (__DIR__ . '/vendor/autoload.php');
 
-use WalkModifyXmlTree\XmlLoader;
-use WalkModifyXmlTree\XmlXpathHandler;
+use WalkModifyXmlTree\ResourceLoader\XmlLoader;
+use WalkModifyXmlTree\Handler\XmlXpathHandler;
 
 $xmlloader = new XmlLoader();
 $xmlhandler = new XmlXpathHandler();

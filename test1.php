@@ -3,10 +3,10 @@ header("Content-Type:text/html;charset=ISO-8859-1");
 
 require_once (__DIR__ . '/vendor/autoload.php');
 
-use WalkModifyXmlTree\XmlLoader;
-use WalkModifyXmlTree\PremiumConfigurationLoader;
-use WalkModifyXmlTree\ConfigurationLoader;
-use WalkModifyXmlTree\XmlGerneralHandler;
+use WalkModifyXmlTree\ResourceLoader\XmlLoader;
+use WalkModifyXmlTree\Configurator\PremiumConfigurationLoader;
+use WalkModifyXmlTree\Configurator\ConfigurationLoader;
+use WalkModifyXmlTree\Handler\XmlGerneralHandler;
 
 $xmlloader = new XmlLoader();
 /**

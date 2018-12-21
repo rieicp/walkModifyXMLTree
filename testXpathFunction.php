@@ -7,7 +7,7 @@
 
 require_once (__DIR__ . '/vendor/autoload.php');
 
-use WalkModifyXmlTree\XmlLoader;
+use WalkModifyXmlTree\ResourceLoader\XmlLoader;
 
 $xmlloader = new XmlLoader();
 

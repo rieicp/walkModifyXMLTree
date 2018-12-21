@@ -1,10 +1,8 @@
 <?php
 
-namespace WalkModifyXmlTree;
+namespace WalkModifyXmlTree\Configurator;
 
-use WalkModifyXmlTree\XmlSnippetLoader;
-
-class PremiumConfigurationLoader
+class ConfigurationLoader
 {
     public function loadConfigurations($file)
     {

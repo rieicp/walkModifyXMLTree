@@ -1,6 +1,6 @@
 <?php
 
-namespace WalkModifyXmlTree;
+namespace WalkModifyXmlTree\ResourceLoader;
 
 class XmlLoader
 {

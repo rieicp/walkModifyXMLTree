@@ -1,6 +1,6 @@
 <?php
 
-use WalkModifyXmlTree\XmlSnippetLoader;
+use WalkModifyXmlTree\ResourceLoader\XmlSnippetLoader;
 
 $configs = [];
 
