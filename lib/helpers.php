@@ -72,15 +72,16 @@ function handleAddChildNodeConfigs($configs, $configsStd): array
 }
 
 /**
- * @param $file
+ * @param $xmlsource
  * @param $xmlloader
  * @param $xmlhandler
  * @param $configs
  * @return SimpleXMLElement
  */
-function handleXml($file, $xmlloader, $xmlhandler, $configs)
+function handleXml($xmlsource, $xmlloader, $xmlhandler, $configs)
 {
-    $str = $xmlloader->loadExampleXML($file);
+    $str = is_file($xmlsource)? $xmlloader->loadExampleXML($xmlsource) : $xmlsource;
+    
     $xml = simplexml_load_string($str);
 
     $configsStd = convert2StandardConfigs($configs);
