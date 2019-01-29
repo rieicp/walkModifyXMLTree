@@ -143,9 +143,9 @@ class XmlXpathHandler
                         $nodes = $xml->xpath('//' . $config['nodename']);
                     }
 
-                } else { //精确匹配
+                } else { //较精确匹配 (非完全精确匹配)
 
-                    $nodes = $xml->xpath($config['path'] . '/' . $config['nodename']);
+                    $nodes = $xml->xpath('//' . $config['path'] . '/' . $config['nodename']);
                 }
 
                 $this->modifyTree($nodes);
