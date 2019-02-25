@@ -32,7 +32,7 @@ class XmlXpathHandler
 
     public function addChildNode($node)
     {
-        $childnode = simplexml_load_string($this->config['snippet']);
+        $childnode = simplexml_load_string($this->removeNBSP($this->config['snippet']));
         $this->sxml_append($node, $childnode);
     }
 
@@ -163,5 +163,11 @@ class XmlXpathHandler
         }
 
         return $nodes;
+    }
+
+    public function removeNBSP($str)
+    {
+        $str = preg_replace("/&nbsp;/", "", $str);
+        return $str;
     }
 }
