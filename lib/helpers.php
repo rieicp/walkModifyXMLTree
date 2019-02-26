@@ -9,6 +9,9 @@ function convert2StandardConfigs($configs)
     if (!empty($configs['addChildNode'])) {
         $configsStd = handleAddChildNodeConfigs($configs, $configsStd);
     }
+    if (!empty($configs['setNodeAttribute'])) {
+        $configsStd = handleSetNodeAttributeConfigs($configs, $configsStd);
+    }
 
     return $configsStd;
 }
@@ -36,16 +39,43 @@ function handleSetNodeValueConfigs($configs, $configsStd): array
 }
 
 /**
+ * @param $configs
+ * @param $configsStd
+ * @return array
+ *
+ */
+function handleSetNodeAttributeConfigs($configs, $configsStd): array
+{
+    foreach ($configs['setNodeAttribute'] as $key => $val) {
+
+        list($path, $nodename, $attribute) = parseNodePath($key);
+
+        $configsStd[] = [
+            'action' => 'setNodeAttribute',
+            'nodename' => $nodename,
+            'path' => $path,
+            'attribute' => $attribute,
+            'value' => $val,
+        ];
+    }
+    return $configsStd;
+}
+
+
+/**
  * @param $key
  * @param $matches
  * @return array
  */
 function parseNodePath($key)
 {
-    // Config目前只允许三种形式：
+    // Config目前只允许四种形式：
     //   - 单纯Nodename
     //   - */Nodename
     //   - path/to/Nodename
+    //   - path/to/Nodename@Attribute
+    $attribute = null;
+
     if (strpos($key, '/') === false) { //  config: 单纯Nodename
 
         $path = '*';
@@ -60,10 +90,15 @@ function parseNodePath($key)
 
             $path = $matches[1];
             $nodename = $matches[2];
+
+        }  elseif (preg_match("/(.*)\/([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)$/", $key, $matches)) { //  config: path/to/Nodename
+            $path = $matches[1];
+            $nodename = $matches[2];
+            $attribute = $matches[3];
         }
     }
 
-    return array($path, $nodename);
+    return array($path, $nodename, $attribute);
 }
 
 /**
