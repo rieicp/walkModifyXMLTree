@@ -56,7 +56,7 @@ function parseNodePath($key)
 
             list($path, $nodename) = explode('/', $key);
 
-        } elseif (preg_match("/(.*)\/([z-zA-Z0-9]+)$/", $key, $matches)) { //  config: path/to/Nodename
+        } elseif (preg_match("/(.*)\/([a-zA-Z0-9_]+)$/", $key, $matches)) { //  config: path/to/Nodename
 
             $path = $matches[1];
             $nodename = $matches[2];
