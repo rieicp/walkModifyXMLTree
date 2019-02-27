@@ -22,7 +22,7 @@ function convert2StandardConfigs($configs)
  * @return array
  *
  */
-function handleSetNodeValueConfigs($configs, $configsStd): array
+function handleSetNodeValueConfigs($configs, $configsStd)
 {
     foreach ($configs['setNodeValue'] as $key => $val) {
 
@@ -44,7 +44,7 @@ function handleSetNodeValueConfigs($configs, $configsStd): array
  * @return array
  *
  */
-function handleSetNodeAttributeConfigs($configs, $configsStd): array
+function handleSetNodeAttributeConfigs($configs, $configsStd)
 {
     foreach ($configs['setNodeAttribute'] as $key => $val) {
 
@@ -106,7 +106,7 @@ function parseNodePath($key)
  * @param $configsStd
  * @return array
  */
-function handleAddChildNodeConfigs($configs, $configsStd): array
+function handleAddChildNodeConfigs($configs, $configsStd)
 {
     foreach ($configs['addChildNode'] as $key => $val) {
 
@@ -131,8 +131,10 @@ function handleAddChildNodeConfigs($configs, $configsStd): array
  */
 function handleXml($xmlsource, $xmlloader, $xmlhandler, $configs)
 {
-    $str = is_file($xmlsource)? $xmlloader->loadExampleXML($xmlsource) : $xmlsource;
-    
+    $ext = pathinfo($xmlsource)['extension'];
+
+    $str = ($ext == 'xml' && is_file($xmlsource))? $xmlloader->loadExampleXML($xmlsource) : $xmlsource;
+
     $xml = simplexml_load_string($str);
 
     $configsStd = convert2StandardConfigs($configs);
